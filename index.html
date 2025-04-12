@@ -33,40 +33,39 @@
     <div>
       <h1 class="text-4xl md:text-5xl font-bold mb-2">Hello, I'm<br> Will Ratkowski</h1>
       <p class="text-lg mb-4">I am a Web Developer</p>
-      <div class="dropdown dropdown-right dropdown-center">
-        <div tabindex="0" role="button" class="btn">I know how to use...</div>
-        <ul id="websites-list" tabindex="0" class="dropdown-content menu bg-base-300 text-black rounded-box z-10 w-52 p-2 shadow-sm">
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" data-url="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" data-url="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" data-url="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
-    <li><a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/">Tailwind CSS</a></li>
-    <li><a href="https://react.dev/" data-url="https://react.dev/">React</a></li>
-    <li><a href="https://nextjs.org/" data-url="https://nextjs.org/">Next.js</a></li>
-
-            <li><a href="https://nodejs.org/en" data-url="https://nodejs.org/en">Node.js</a></li>
-            <li><a href="https://getbootstrap.com/" data-url="https://getbootstrap.com/">Bootstrap</a></li>
-            <li><a href="https://react.dev/" data-url="https://react.dev/">React</a></li>
-            <li><a href="https://git-scm.com/" data-url="https://git-scm.com/">Git</a></li>
-            <li><a href="https://render.com/" data-url="https://render.com/">Render</a></li>
-            <li><a href="https://www.electronjs.org/" data-url="https://www.electronjs.org/">Electron</a></li>
-            <li><a href="https://github.com/electron/packager" data-url="https://github.com/electron/packager">Electron Packager</a></li>
-            <li><a href="https://chatgpt.com/" data-url="https://chatgpt.com/">ChatGPT</a></li>
-            <li><a href="https://webpack.js.org/" data-url="https://webpack.js.org/">Webpack</a></li>
-            <li><a href="https://developer.chrome.com/docs/extensions" data-url="https://developer.chrome.com/docs/extensions">Chrome Extensions</a></li>
-            <li><a href="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH" data-url="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH">Edge Extensions</a></li>
-            <li><a href="https://www.mongodb.com" data-url="https://www.mongodb.com">MongoDB</a></li>
-            <li><a href="https://console.groq.com/docs/api-reference" data-url="https://console.groq.com/docs/api-reference">Groq API</a></li>
-            <li><a href="https://github.com/octalmage/robotjs" data-url="https://github.com/octalmage/robotjs">RobotJS</a></li>
-            <li><a href="https://developers.google.com/maps/apis-by-platform" data-url="https://developers.google.com/maps/apis-by-platform">Google Maps API</a></li>
-            <li><a href="https://fontawesome.com/" data-url="https://fontawesome.com/">Font Awesome</a></li>
-            <li><a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" data-url="https://microsoft.github.io/monaco-editor/typedoc/index.html">Monaco Editor API</a></li>
-            <li><a href="https://medusajs.com/" data-url="https://medusajs.com/">Medusa</a></li>
-        </ul>
-      </div>
-    </div>
+      <!-- Fixed always-open dropdown on the left -->
+<div class="fixed top-1/2 left-0 transform -translate-y-1/2 w-56 bg-base-300 text-black p-4 rounded-r-lg shadow-lg z-50">
+    <h2 class="font-bold mb-2">I know how to use...</h2>
+    <ul id="websites-list" class="menu space-y-1">
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" data-url="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" data-url="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" data-url="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
+      <li><a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/">Tailwind CSS</a></li>
+      <li><a href="https://react.dev/" data-url="https://react.dev/">React</a></li>
+      <li><a href="https://nextjs.org/" data-url="https://nextjs.org/">Next.js</a></li>
+      <li><a href="https://nodejs.org/en" data-url="https://nodejs.org/en">Node.js</a></li>
+      <li><a href="https://getbootstrap.com/" data-url="https://getbootstrap.com/">Bootstrap</a></li>
+      <li><a href="https://git-scm.com/" data-url="https://git-scm.com/">Git</a></li>
+      <li><a href="https://render.com/" data-url="https://render.com/">Render</a></li>
+      <li><a href="https://www.electronjs.org/" data-url="https://www.electronjs.org/">Electron</a></li>
+      <li><a href="https://github.com/electron/packager" data-url="https://github.com/electron/packager">Electron Packager</a></li>
+      <li><a href="https://chatgpt.com/" data-url="https://chatgpt.com/">ChatGPT</a></li>
+      <li><a href="https://webpack.js.org/" data-url="https://webpack.js.org/">Webpack</a></li>
+      <li><a href="https://developer.chrome.com/docs/extensions" data-url="https://developer.chrome.com/docs/extensions">Chrome Extensions</a></li>
+      <li><a href="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH" data-url="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH">Edge Extensions</a></li>
+      <li><a href="https://www.mongodb.com" data-url="https://www.mongodb.com">MongoDB</a></li>
+      <li><a href="https://console.groq.com/docs/api-reference" data-url="https://console.groq.com/docs/api-reference">Groq API</a></li>
+      <li><a href="https://github.com/octalmage/robotjs" data-url="https://github.com/octalmage/robotjs">RobotJS</a></li>
+      <li><a href="https://developers.google.com/maps/apis-by-platform" data-url="https://developers.google.com/maps/apis-by-platform">Google Maps API</a></li>
+      <li><a href="https://fontawesome.com/" data-url="https://fontawesome.com/">Font Awesome</a></li>
+      <li><a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" data-url="https://microsoft.github.io/monaco-editor/typedoc/index.html">Monaco Editor API</a></li>
+      <li><a href="https://medusajs.com/" data-url="https://medusajs.com/">Medusa</a></li>
+    </ul>
+  </div>
+  
     
-<p style="font-weight: 100;">Some of my projects are... (More comming soon)</p>
-
+<p style="font-weight: 400; font-size: small;">Some of my projects are... (More comming soon)</p>
+<br>
     <!-- Cards section -->
     <div class="flex flex-col md:flex-row justify-center items-center gap-6">
       <!-- Card 1 -->
@@ -80,7 +79,7 @@
          <p>NitroTab is a AI powerd NewTab page avalable on Web, Windows, Chrome Webstore and Microsoft Edge Webstore.</p>
          <br>
           <div class="card-actions justify-center">
-            <button class="btn btn-primary">https://Nitroab.tech</button>
+            <a href="https://Nitroab.tech" target="_blank" class="btn btn-primary">https://Nitroab.tech</a>
           </div>
         </div>
       </div>
