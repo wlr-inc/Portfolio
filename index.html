@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
   <link rel="icon" href="code-solid.svg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .animated-background {
       background: linear-gradient(-45deg, #a36aff, #8d31d9, #4e26bc, #ee1313);
@@ -19,22 +20,20 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
   </style>
 </head>
 <body class="m-0 p-0">
 
-  <!-- Full screen container -->
-  <div class="flex flex-col justify-center items-center h-screen animated-background text-white text-center px-4 space-y-8">
+  <!-- Mobile hamburger -->
+  <div class="fixed top-4 right-4 z-50 md:hidden">
+    <button id="toggleSidebar" class="btn btn-square btn-sm bg-white text-black">
+      ☰
+    </button>
+  </div>
 
-    
+  <!-- Sidebar -->
+  <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-base-300 text-black p-4 rounded-r-lg shadow-lg z-40 transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:fixed md:rounded-none md:shadow-none">
 
-    <!-- Hero section -->
-    <div>
-      <h1 class="text-4xl md:text-5xl font-bold mb-2">Hello, I'm<br> Will Ratkowski</h1>
-      <p class="text-lg mb-4">I am a Web Developer</p>
-      <!-- Fixed always-open dropdown on the left -->
-<div class="fixed top-1/2 left-0 transform -translate-y-1/2 w-56 bg-base-300 text-black p-4 rounded-r-lg shadow-lg z-50">
     <h2 class="font-bold mb-2">I know how to use...</h2>
     <ul id="websites-list" class="menu space-y-1">
       <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" data-url="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
@@ -62,10 +61,18 @@
       <li><a href="https://medusajs.com/" data-url="https://medusajs.com/">Medusa</a></li>
     </ul>
   </div>
-  
-    
-<p style="font-weight: 400; font-size: small;">Some of my projects are... (More comming soon)</p>
-<br>
+
+  <!-- Main Content -->
+  <div class="flex flex-col justify-center items-center min-h-screen animated-background text-white text-center px-4 space-y-8 md:ml-64">
+
+    <!-- Hero section -->
+    <div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-2">Hello, I'm<br> Will Ratkowski</h1>
+      <p class="text-lg mb-4">I am a Web Developer</p>
+
+      <p style="font-weight: 400; font-size: small;">Some of my projects are... (More coming soon)</p>
+    </div>
+
     <!-- Cards section -->
     <div class="flex flex-col md:flex-row justify-center items-center gap-6">
       <!-- Card 1 -->
@@ -75,54 +82,44 @@
         </figure>
         <div class="card-body text-black">
           <h2 class="card-title justify-center">NitroTab</h2>
-          <br>
-         <p>NitroTab is a AI powerd NewTab page avalable on Web, Windows, Chrome Webstore and Microsoft Edge Webstore.</p>
-         <br>
-          <div class="card-actions justify-center">
+          <p>NitroTab is an AI-powered NewTab page available on Web, Windows, Chrome Webstore and Microsoft Edge Webstore.</p>
+          <div class="card-actions justify-center mt-4">
             <a href="https://Nitrotab.tech" target="_blank" class="btn btn-primary">https://Nitrotab.tech</a>
           </div>
         </div>
       </div>
-
-      <!-- Card 2 
-      <div class="card w-72 bg-base-100 shadow-md">
-        <figure>
-          <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-        </figure>
-        <div class="card-body text-black">
-          <h2 class="card-title">Minecraft2D</h2>
-         
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>-->
     </div>
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script>
+    // Add favicons
     window.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('a[data-url]');
+      const links = document.querySelectorAll('a[data-url]');
+      links.forEach(link => {
+        const url = link.getAttribute('data-url');
+        const favicon = `https://www.google.com/s2/favicons?domain=${url}`;
+        const img = document.createElement('img');
+        img.src = favicon;
+        img.alt = 'Favicon';
+        img.style.width = '16px';
+        img.style.height = '16px';
+        img.style.marginRight = '8px';
+        link.prepend(img);
+      });
+    });
 
-  links.forEach(link => {
-    const url = link.getAttribute('data-url');
-    const favicon = `https://www.google.com/s2/favicons?domain=${url}`;
+    // Toggle sidebar on mobile
+    const toggleButton = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
 
-    // Create an img element for the favicon
-    const img = document.createElement('img');
-    img.src = favicon;
-    img.alt = 'Favicon';
-    img.style.width = '16px';
-    img.style.height = '16px';
-    img.style.marginRight = '8px'; // Add space between favicon and text
-
-    // Prepend the favicon image to the link text
-    link.prepend(img);
-  });
-});
-
+    toggleButton.addEventListener('click', () => {
+      if (sidebar.classList.contains('-translate-x-full')) {
+        sidebar.classList.remove('-translate-x-full');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+      }
+    });
   </script>
 </body>
 </html>
