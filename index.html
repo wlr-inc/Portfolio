@@ -13,12 +13,14 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
+  z-index: 2;
  
 }
     .animated-background {
       background: linear-gradient(-45deg, #a36aff, #8d31d9, #4e26bc, #ee1313);
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
+      z-index: -2;
     }
 
     @keyframes gradientAnimation {
@@ -26,6 +28,78 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    @keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-text {
+  display: inline-block;
+  animation: slideIn 1s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    color: #ffffff;
+  }
+  50% {
+    color: #cdcdcd75;
+  }
+  100% {
+    color: #ffffff;
+  }
+}
+
+.subtle-pulse {
+  display: inline-block;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.wave-effect {
+  display: inline-block;
+  animation: wave 5s ease-in infinite;
+}
+
+.wave-effect span {
+  display: inline-block;
+  animation: wave 5s ease-in-out infinite;
+  animation-delay: calc(1s * var(--i));
+}
+
+.text-lg {
+  font-size: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* This places the canvas behind the content */
+  color: #9c9c9c;
+}
+
+
   </style>
 </head>
 <body class="m-0 p-0">
@@ -67,16 +141,23 @@
       <li><a href="https://medusajs.com/" data-url="https://medusajs.com/">Medusa</a></li>
     </ul>
   </div>
-
+  <canvas id="walkerCanvas"></canvas>
   <!-- Main Content -->
   <div class="flex flex-col justify-center items-center min-h-screen animated-background text-white text-center px-4 space-y-8 md:ml-64">
 
     <!-- Hero section -->
-    <div>
-      <h1 class="text-4xl md:text-5xl font-bold mb-2">Hello, I'm<br> Will Ratkowski</h1>
-      <p class="text-lg mb-4">I am a Web Developer</p>
+    <div style="z-index: 10;">
+      <h1  class="text-4xl md:text-5xl font-bold mb-2 animate-text "><span class="subtle-pulse">Hello</span>, <br>I'm <strong>Will Ratkowski</strong>.</h1>
+      <p style="font-weight: 400; font-size: small;">My email is: <strong>wlratkowski@gmail.com</strong></p>
+      <br>
+      <p class="text-lg mb-4">
+       My Websites:
+      </p>
+      
 
-      <p style="font-weight: 400; font-size: small;">Some of my projects are... (More coming soon)</p>
+
+
+     
     </div>
 
 <!-- Cards section -->
@@ -177,9 +258,117 @@
 
 
   </div>
+  
 <br>
   <br>
+  
   <script>
+    
+
+const canvas = document.getElementById("walkerCanvas");
+  const ctx = canvas.getContext("2d");
+
+  let width, height;
+  let x, y;
+  let angle;
+  let stepLength = 3;
+  let turnChance = 0.15;
+  const possibleAngles = [0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2];
+  let lineWidth = 2;
+  let lineColor = "rgba(229, 231, 235, 0.8)";
+
+  const FADE_ENABLED = true;
+  const FADE_AMOUNT = 0.03;
+  const BACKGROUND_COLOR = "#8d31d9";
+
+  function setup() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    x = Math.random() * width;
+    y = Math.random() * height;
+    angle = possibleAngles[Math.floor(Math.random() * possibleAngles.length)];
+
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    if (!FADE_ENABLED) {
+      ctx.fillStyle = BACKGROUND_COLOR;
+      ctx.fillRect(0, 0, width, height);
+    }
+  }
+
+  function draw() {
+    requestAnimationFrame(draw);
+
+    if (FADE_ENABLED) {
+      ctx.fillStyle = `rgba(${hexToRgb(BACKGROUND_COLOR).r}, ${
+        hexToRgb(BACKGROUND_COLOR).g
+      }, ${hexToRgb(BACKGROUND_COLOR).b}, ${FADE_AMOUNT})`;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    const oldX = x;
+    const oldY = y;
+
+    x += Math.cos(angle) * stepLength;
+    y += Math.sin(angle) * stepLength;
+
+    if (x < 0) x = width;
+    if (x > width) x = 0;
+    if (y < 0) y = height;
+    if (y > height) y = 0;
+
+    ctx.beginPath();
+    ctx.moveTo(oldX, oldY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = lineWidth;
+    ctx.stroke();
+
+    if (Math.random() < turnChance) {
+      angle = possibleAngles[Math.floor(Math.random() * possibleAngles.length)];
+    }
+  }
+
+  function hexToRgb(hex) {
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        }
+      : null;
+  }
+
+  window.addEventListener("resize", () => {
+    setup();
+    if (!FADE_ENABLED) {
+      ctx.fillStyle = BACKGROUND_COLOR;
+      ctx.fillRect(0, 0, width, height);
+    }
+  });
+
+  setup();
+  draw();
+    
+     // Select the container holding the cards
+  const cardContainer = document.querySelector('.w-full.overflow-x-auto');
+
+cardContainer.addEventListener('wheel', (event) => {
+  // Prevent default scrolling behavior (vertical scroll)
+  event.preventDefault();
+
+  // Adjust the scroll by a certain amount based on the wheel delta
+  cardContainer.scrollLeft += event.deltaY;
+});
     // Add favicons
     window.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('a[data-url]');
