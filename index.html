@@ -99,11 +99,19 @@ canvas {
   color: rgba(229, 231, 235, 0.312);
 }
 
+.sneka {
+      position: absolute;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: transform 0.2s;
+      z-index: 1000;
+    }
 
   </style>
 </head>
 <body class="m-0 p-0">
-
+  <button class="sneka bg-violet-500 text-white font-bold py-2 px-4 rounded shadow-md hidden sm:block" id="trickyBtn">😛Click Me!</button>
   <!-- Mobile hamburger -->
   <div class="fixed top-4 right-4 z-50 md:hidden">
     <button id="toggleSidebar" class="btn btn-square btn-sm bg-white text-black">
@@ -293,7 +301,56 @@ canvas {
   <br>
   
   <script>
-    
+
+document.getElementById('trickyBtn').addEventListener('click', function() {
+    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rick Roll link
+  });
+
+     const btn = document.getElementById('trickyBtn');
+
+const insults = [
+"ya stupid or somthin?",
+"😂Too slow",
+"😂looser",
+"Come on it's not that hard",
+"You call *that* a try?",
+"Use both hands maybe?",
+"Try again, snail 🐌",
+"You good bro?",
+"👵My grandma clicks faster",
+"Bruh.",
+"This is just sad",
+"😴You sure you're awake?",
+"😵404: Skill not found",
+"Touch grass first",
+"😂Even a cat could do better",
+"You almost had it! (lol jk)",
+"😂Keep dreaming",
+"This ain’t a touchscreen",
+"Nope. Not today.",
+"Better luck next never",
+"Nice try... not",
+"😂Haha, missed again",
+"Pathetic"
+];
+
+btn.addEventListener('mouseover', () => {
+  // Move to a random position
+  const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+  btn.style.left = `${x}px`;
+  btn.style.top = `${y}px`;
+
+  // Pick a random insult
+  const randomInsult = insults[Math.floor(Math.random() * insults.length)];
+
+  // Show insult then return to original text
+  const originalText = "😛Click Me!";
+  btn.textContent = randomInsult;
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 800);
+});
 
 const canvas = document.getElementById("walkerCanvas");
   const ctx = canvas.getContext("2d");
