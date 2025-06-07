@@ -1,0 +1,378 @@
+/* --- General UI Variables --- */
+:root {
+  --toolbar-bg: #23272e;
+  --toolbar-fg: #f7fafc;
+  --toolbar-accent: #4f8cff;
+  --toolbar-radius: 14px;
+  --toolbar-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  --toolbar-blur: blur(8px);
+  --toolbar-border: 1.5px solid rgba(255,255,255,0.12);
+  --toolbar-gap: 14px;
+  --toolbar-padding: 18px 28px;
+  --toolbar-btn-bg: #2a2f38;
+  --toolbar-btn-hover: #4f8cff;
+  --toolbar-btn-active: #1e2230;
+  --toolbar-btn-radius: 8px;
+  --toolbar-btn-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  --toolbar-btn-fg: #f7fafc;
+  --toolbar-btn-fg-hover: #fff;
+  --toolbar-btn-fg-active: #c3e0ff;
+  --toolbar-transition: all 0.18s cubic-bezier(.4,0,.2,1);
+  --toolbar-drag-fg: #7e869b;
+  --toolbar-drag-hover: #4f8cff;
+  --toolbar-popup-bg: #23272e;
+  --toolbar-popup-fg: #f7fafc;
+  --toolbar-popup-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  --toolbar-popup-radius: 12px;
+  --toolbar-popup-border: 1.5px solid rgba(255,255,255,0.10);
+  --powered-label-color: #a0aec0;
+}
+
+body.light-theme,
+.light-theme {
+  --toolbar-bg: #f7fafc;
+  --toolbar-fg: #23272e;
+  --toolbar-accent: #2563eb;
+  --toolbar-radius: 14px;
+  --toolbar-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  --toolbar-blur: blur(8px);
+  --toolbar-border: 1.5px solid rgba(31,38,135,0.08);
+  --toolbar-btn-bg: #e5e7eb;
+  --toolbar-btn-hover: #2563eb;
+  --toolbar-btn-active: #dbeafe;
+  --toolbar-btn-fg: #23272e;
+  --toolbar-btn-fg-hover: #fff;
+  --toolbar-btn-fg-active: #2563eb;
+  --toolbar-drag-fg: #64748b;
+  --toolbar-drag-hover: #2563eb;
+  --toolbar-popup-bg: #fff;
+  --toolbar-popup-fg: #23272e;
+  --toolbar-popup-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  --toolbar-popup-radius: 12px;
+  --toolbar-popup-border: 1.5px solid rgba(31,38,135,0.08);
+  --powered-label-color: #64748b;
+}
+
+/* --- Toolbar Container --- */
+#toolbar-container {
+  all: unset; 
+  display: none ;
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  min-width: 320px;
+  z-index: 1001;
+  gap: var(--toolbar-gap) !important;
+  padding: 18px 28px 28px 28px !important;
+  background: var(--toolbar-bg);
+  color: var(--toolbar-fg);
+  border-radius: var(--toolbar-radius);
+  box-shadow: var(--toolbar-shadow);
+  border: var(--toolbar-border);
+  backdrop-filter: var(--toolbar-blur);
+  align-items: center !important;
+  animation: toolbarIn 0.45s cubic-bezier(.4,0,.2,1);
+  opacity: 0.98;
+  position: relative; /* <-- Add this line */
+}
+@keyframes toolbarIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 0.98;
+    transform: translateX(-50%) scale(0.98);
+  }
+}
+
+/* --- Toolbar Drag Handle --- */
+#toolbar-drag-button {
+  background: none !important;
+  border: none !important;
+  cursor: grab !important;
+  font-size: 22px !important;
+  color: var(--toolbar-drag-fg) !important;
+  padding: 0 8px !important;
+  border-radius: 6px !important;
+  transition: var(--toolbar-transition);
+  user-select: none !important;
+}
+#toolbar-drag-button:hover {
+  color: var(--toolbar-drag-hover) !important;
+  background: rgba(79,140,255,0.08) !important;
+}
+
+/* --- Toolbar Buttons --- */
+#toolbar-restore-button,
+#toolbar-bold-button,
+#toolbar-italic-button,
+#toolbar-underline-button,
+#toolbar-margin-button,
+#toolbar-padding-button,
+#toolbar-close-button,
+#toolbar-container button,
+#toolbar-container input[type="number"] {
+  background: var(--toolbar-btn-bg) !important;
+  border: none !important;
+  padding: 10px 18px !important;
+  border-radius: var(--toolbar-btn-radius) !important;
+  cursor: pointer !important;
+  font-size: 15px !important;
+  color: var(--toolbar-btn-fg) !important;
+  box-shadow: var(--toolbar-btn-shadow);
+  transition: var(--toolbar-transition);
+  outline: none !important;
+  margin: 0 !important;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+  position: relative;
+  z-index: 1;
+}
+#toolbar-restore-button:hover,
+#toolbar-bold-button:hover,
+#toolbar-italic-button:hover,
+#toolbar-underline-button:hover,
+#toolbar-margin-button:hover,
+#toolbar-padding-button:hover,
+#toolbar-close-button:hover,
+#toolbar-container button:hover,
+#toolbar-container input[type="number"]:hover {
+  background: var(--toolbar-btn-hover) !important;
+  color: var(--toolbar-btn-fg-hover) !important;
+  box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+#toolbar-restore-button:active,
+#toolbar-bold-button:active,
+#toolbar-italic-button:active,
+#toolbar-underline-button:active,
+#toolbar-margin-button:active,
+#toolbar-padding-button:active,
+#toolbar-close-button:active,
+#toolbar-container button:active,
+#toolbar-container input[type="number"]:active {
+  background: var(--toolbar-btn-active) !important;
+  color: var(--toolbar-btn-fg-active) !important;
+  transform: scale(0.97);
+}
+
+/* --- Toolbar Button Specifics --- */
+#toolbar-bold-button { font-weight: 700 !important; letter-spacing: 0.5px; }
+#toolbar-italic-button { font-style: italic !important; }
+#toolbar-underline-button { text-decoration: underline !important; }
+#toolbar-close-button {
+  padding: 10px 12px !important;
+  background: transparent !important;
+  color: #e57373 !important;
+  border: none !important;
+  transition: var(--toolbar-transition);
+}
+#toolbar-close-button:hover {
+  background: #e57373 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(229,115,115,0.18);
+}
+
+/* --- Color Picker --- */
+#color-picker {
+  width: 38px !important;
+  height: 38px !important;
+  border: 2px solid var(--toolbar-btn-bg) !important;
+  background: linear-gradient(135deg, #fff 60%, #e0e7ef 100%) !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+  transition: var(--toolbar-transition);
+  padding: 0 !important;
+  margin: 0 6px !important;
+}
+#color-picker {
+  width: 38px !important;
+  height: 38px !important;
+  border: 2px solid var(--toolbar-btn-bg) !important;
+  background: transparent !important; /* Remove gradient */
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+  transition: var(--toolbar-transition);
+  padding: 0 !important;
+  margin: 0 6px !important;
+  overflow: hidden;
+}
+
+/* Make the color swatch fill the circle */
+#color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 50%;
+}
+#color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+#color-picker:hover {
+  border-color: var(--toolbar-accent) !important;
+  box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+  transform: scale(1.08);
+}
+
+/* --- Save Button --- */
+#save {
+  background: linear-gradient(90deg, #4f8cff 0%, #38b6ff 100%) !important;
+  color: #fff !important;
+  padding: 10px 24px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+  transition: var(--toolbar-transition);
+  letter-spacing: 0.5px;
+}
+#save:hover {
+  background: linear-gradient(90deg, #38b6ff 0%, #4f8cff 100%) !important;
+  color: #fff !important;
+  transform: scale(1.06);
+  box-shadow: 0 8px 32px rgba(56,182,255,0.18);
+}
+
+/* --- Toolbar Popup (for margin/padding/color) --- */
+.toolbar-popup,
+#toolbar-popup,
+div[style*="z-index: 2005"] {
+  background: var(--toolbar-popup-bg) !important;
+  color: var(--toolbar-popup-fg) !important;
+  border-radius: var(--toolbar-popup-radius) !important;
+  box-shadow: var(--toolbar-popup-shadow) !important;
+  border: var(--toolbar-popup-border) !important;
+  padding: 22px 28px !important;
+  min-width: 180px !important;
+  min-height: 120px !important;
+  font-size: 1.08rem !important;
+  animation: popupIn 0.32s cubic-bezier(.4,0,.2,1);
+  transition: var(--toolbar-transition);
+  z-index: 2005 !important;
+}
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Inputs inside popups --- */
+.toolbar-popup input[type="number"],
+#toolbar-popup input[type="number"],
+div[style*="z-index: 2005"] input[type="number"] {
+  background: #23272e !important;
+  color: #f7fafc !important;
+  border: 1.5px solid #4f8cff !important;
+  border-radius: 7px !important;
+  padding: 10px 14px !important;
+  font-size: 1.08rem !important;
+  margin-top: 10px !important;
+  margin-bottom: 6px !important;
+  transition: var(--toolbar-transition);
+  box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+}
+.toolbar-popup input[type="number"]:focus,
+#toolbar-popup input[type="number"]:focus,
+div[style*="z-index: 2005"] input[type="number"]:focus {
+  border-color: #38b6ff !important;
+  background: #1e2230 !important;
+  outline: none !important;
+}
+
+/* --- Animations for toolbar show/hide --- */
+#toolbar-container[style*="display: flex"] {
+  animation: toolbarIn 0.45s cubic-bezier(.4,0,.2,1);
+  opacity: 1 !important;
+}
+#toolbar-container[style*="display: none"] {
+  animation: toolbarOut 0.32s cubic-bezier(.4,0,.2,1);
+  opacity: 0 !important;
+}
+@keyframes toolbarOut {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) scale(0.98);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px) scale(0.95);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 700px) {
+  #toolbar-container {
+    left: 50% !important;
+    right: unset !important;
+    width: 96vw !important;
+    min-width: 0 !important;
+    max-width: 98vw !important;
+    padding: 10px 2vw !important;
+    border-radius: 10px !important;
+    gap: 8px !important;
+  }
+  .toolbar-popup,
+  #toolbar-popup,
+  div[style*="z-index: 2005"] {
+    min-width: 120px !important;
+  min-height: 60px !important;
+  padding: 12px 14px !important;
+  font-size: 0.98rem !important;
+  }
+}
+
+/* --- Subtle Glow on Focused Editable --- */
+[contenteditable="true"] {
+  outline: 2px solid #4f8cff !important;
+  box-shadow: 0 0 0 4px rgba(79,140,255,0.10) !important;
+  border-radius: 6px !important;
+  transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), outline 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Hide scrollbars for toolbar --- */
+#toolbar-container::-webkit-scrollbar {
+  display: none;
+}
+#toolbar-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.toolbar-popup.margin-popup,
+.toolbar-popup.padding-popup,
+#toolbar-popup.margin-popup,
+#toolbar-popup.padding-popup,
+div[style*="z-index: 2005"].margin-popup,
+div[style*="z-index: 2005"].padding-popup {
+  min-width: 90px !important;
+  min-height: 40px !important;
+  padding: 8px 10px !important;
+  font-size: 0.95rem !important;
+}
+
+#toolbar-powered-label {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1px;
+  width: 100vw;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--powered-label-color) !important;
+  letter-spacing: 0.04em;
+  padding-bottom: 6px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1002;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+}
