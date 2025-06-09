@@ -8,11 +8,13 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
   <link rel="icon" href="code-solid.svg" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
      html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  scroll-behavior: smooth;
+  
   z-index: 2;
  
 }
@@ -90,13 +92,15 @@
   margin-bottom: 1rem;
 }
 canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
-  z-index: 0; /* This places the canvas behind the content */
+  min-height: 100vh;
+  z-index: 0;
   color: rgba(229, 231, 235, 0.312);
+  pointer-events: none;
 }
 
 .sneka {
@@ -108,68 +112,109 @@ canvas {
       z-index: 1000;
     }
 
+ .ikh {
+  opacity: 1 !important;
+  z-index: 10 !important;
+}
+
+.no-trans {
+  opacity: 1 !important;
+  z-index: 20 !important;
+}
+
   </style>
+<style>
+@media (max-width: 768px) {
+  #projects .grid {
+    grid-template-columns: 1fr !important;
+    justify-content: center !important;
+  }
+  #projects .card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+</style>
 </head>
-<body class="m-0 p-0">
-  <button class="sneka bg-violet-500 text-white font-bold py-2 px-4 rounded shadow-md hidden sm:block" id="trickyBtn">😛Click Me!</button>
-  <!-- Mobile hamburger -->
-  <div class="fixed top-4 right-4 z-50 md:hidden">
-    <button id="toggleSidebar" class="btn btn-square btn-sm bg-white text-black">
-      ☰
-    </button>
+<body class="m-0 p-0 animated-background">
+
+<!-- Transparent Fixed Navbar -->
+<nav class="fixed top-0 left-0 w-full z-[10001] bg-black/40 backdrop-blur-md text-white flex items-center justify-between px-8 py-3 shadow-sm" data-aos="slide-down">
+  <span class="font-bold text-lg ">Will Ratkowski</span>
+  <div class="flex gap-6 text-base">
+    <a href="#projects" class="hover:underline">Projects</a>
+    <a href="#skills" class="hover:underline">Skills</a>
+    <a href="mailto:wlratkowski@gmail.com" class="hover:underline">Contact</a>
   </div>
+</nav>
+
+  <button
+  class="sneka bg-violet-500 text-white font-bold py-2 px-4 rounded shadow-md hidden sm:block"
+  id="trickyBtn"
+  style="left: 200px; top: 100px;"
+>
+  😛Click Me!
+</button>
 
   <!-- Sidebar -->
-  <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-base-300 text-black p-4 rounded-r-lg shadow-lg z-40 transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:fixed md:rounded-none md:shadow-none overflow-y-auto">
 
-    <h2 class="font-bold mb-2">I know how to use...</h2>
-    <ul id="websites-list" class="menu space-y-1">
-      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" data-url="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
-      <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" data-url="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
-      <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" data-url="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
-      <li><a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/">Tailwind CSS</a></li>
-      <li><a href="https://react.dev/" data-url="https://react.dev/">React</a></li>
-      <li><a href="https://nextjs.org/" data-url="https://nextjs.org/">Next.js</a></li>
-      <li><a href="https://nodejs.org/en" data-url="https://nodejs.org/en">Node.js</a></li>
-      <li><a href="https://getbootstrap.com/" data-url="https://getbootstrap.com/">Bootstrap</a></li>
-      <li><a href="https://git-scm.com/" data-url="https://git-scm.com/">Git</a></li>
-      <li><a href="https://www.npmjs.com/" data-url="https://www.npmjs.com/">NPM</a></li>
-      <li><a href="https://render.com/" data-url="https://render.com/">Render</a></li>
-      <li><a href="https://www.electronjs.org/" data-url="https://www.electronjs.org/">Electron</a></li>
-      <li><a href="https://github.com/electron/packager" data-url="https://github.com/electron/packager">Electron Packager</a></li>
-      <li><a href="https://chatgpt.com/" data-url="https://chatgpt.com/">ChatGPT</a></li>
-      <li><a href="https://webpack.js.org/" data-url="https://webpack.js.org/">Webpack</a></li>
-      <li><a href="https://developer.chrome.com/docs/extensions" data-url="https://developer.chrome.com/docs/extensions">Chrome Extensions</a></li>
-      <li><a href="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH" data-url="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH">Edge Extensions</a></li>
-      <li><a href="https://www.mongodb.com" data-url="https://www.mongodb.com">MongoDB</a></li>
-      <li><a href="https://console.groq.com/docs/api-reference" data-url="https://console.groq.com/docs/api-reference">Groq API</a></li>
-      <li><a href="https://github.com/octalmage/robotjs" data-url="https://github.com/octalmage/robotjs">RobotJS</a></li>
-      <li><a href="https://developers.google.com/maps/apis-by-platform" data-url="https://developers.google.com/maps/apis-by-platform">Google Maps API</a></li>
-      <li><a href="https://fontawesome.com/" data-url="https://fontawesome.com/">Font Awesome</a></li>
-      <li><a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" data-url="https://microsoft.github.io/monaco-editor/typedoc/index.html">Monaco Editor API</a></li>
-      <li><a href="https://medusajs.com/" data-url="https://medusajs.com/">Medusa</a></li>
-    </ul>
-  </div>
-  <canvas id="walkerCanvas"></canvas>
+  <canvas id="walkerCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; min-height: 100%; z-index: 0; pointer-events: none;"></canvas>
   <!-- Main Content -->
-  <div class="flex flex-col justify-center items-center min-h-screen animated-background text-white text-center px-4 space-y-8 md:ml-64">
+<div class="flex flex-col items-center min-h-screen  text-white text-center px-4">
+  <!-- Hero section -->
+  <div id="skills" style="z-index: 10;" class="flex flex-col justify-center items-center min-h-screen">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 animate-text " ><span class="subtle-pulse" data-aos="flip-up">Hello</span>, <br>I'm <strong>Will Ratkowski</strong>.</h1>
+    
 
-    <!-- Hero section -->
-    <div style="z-index: 10;">
-      <h1  class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 animate-text"><span class="subtle-pulse">Hello</span>, <br>I'm <strong>Will Ratkowski</strong>.</h1>
-      <p style="font-weight: 400; font-size: small;">Want a website? Email me: <strong>wlratkowski@gmail.com</strong></p>
-      <br>
-      <p class="text-lg">
-       My Websites:
-      </p>
+    <!-- "I know how to use..." section -->
+<div class="w-full max-w-3xl mx-auto  bg-transparent rounded-lg  p-6 ikh">
+  <h2 class="font-bold text-2xl mb-4 text-white text-center " data-aos="flip-up">I know how to use...</h2>
+  <ul class="flex flex-wrap justify-center gap-3 text-white text-base font-semibold" data-aos="slide-left">
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" data-url="https://developer.mozilla.org/en-US/docs/Web/HTML" class="hover:underline flex items-center">HTML</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" data-url="https://developer.mozilla.org/en-US/docs/Web/CSS" class="hover:underline flex items-center">CSS</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" data-url="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="hover:underline flex items-center">JavaScript</a></li>
+    <li><a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/" class="hover:underline flex items-center">Tailwind CSS</a></li>
+    <li><a href="https://react.dev/" data-url="https://react.dev/" class="hover:underline flex items-center">React</a></li>
+    <li><a href="https://nextjs.org/" data-url="https://nextjs.org/" class="hover:underline flex items-center">Next.js</a></li>
+    <li><a href="https://nodejs.org/en" data-url="https://nodejs.org/en" class="hover:underline flex items-center">Node.js</a></li>
+    <li><a href="https://getbootstrap.com/" data-url="https://getbootstrap.com/" class="hover:underline flex items-center">Bootstrap</a></li>
+    <li><a href="https://git-scm.com/" data-url="https://git-scm.com/" class="hover:underline flex items-center">Git</a></li>
+    <li><a href="https://www.npmjs.com/" data-url="https://www.npmjs.com/" class="hover:underline flex items-center">NPM</a></li>
+    <li><a href="https://render.com/" data-url="https://render.com/" class="hover:underline flex items-center">Render</a></li>
+    <li><a href="https://www.electronjs.org/" data-url="https://www.electronjs.org/" class="hover:underline flex items-center">Electron</a></li>
+    <li><a href="https://github.com/electron/packager" data-url="https://github.com/electron/packager" class="hover:underline flex items-center">Electron Packager</a></li>
+    <li><a href="https://chatgpt.com/" data-url="https://chatgpt.com/" class="hover:underline flex items-center">ChatGPT</a></li>
+    <li><a href="https://webpack.js.org/" data-url="https://webpack.js.org/" class="hover:underline flex items-center">Webpack</a></li>
+    <li><a href="https://developer.chrome.com/docs/extensions" data-url="https://developer.chrome.com/docs/extensions" class="hover:underline flex items-center">Chrome Extensions</a></li>
+    <li><a href="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH" data-url="https://developer.microsoft.com/en-us/microsoft-edge/extensions/?form=MA13LH" class="hover:underline flex items-center">Edge Extensions</a></li>
+    <li><a href="https://www.mongodb.com" data-url="https://www.mongodb.com" class="hover:underline flex items-center">MongoDB</a></li>
+    <li><a href="https://console.groq.com/docs/api-reference" data-url="https://console.groq.com/docs/api-reference" class="hover:underline flex items-center">Groq API</a></li>
+    <li><a href="https://github.com/octalmage/robotjs" data-url="https://github.com/octalmage/robotjs" class="hover:underline flex items-center">RobotJS</a></li>
+    <li><a href="https://developers.google.com/maps/apis-by-platform" data-url="https://developers.google.com/maps/apis-by-platform" class="hover:underline flex items-center">Google Maps API</a></li>
+    <li><a href="https://fontawesome.com/" data-url="https://fontawesome.com/" class="hover:underline flex items-center">Font Awesome</a></li>
+    <li><a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" data-url="https://microsoft.github.io/monaco-editor/typedoc/index.html" class="hover:underline flex items-center">Monaco Editor API</a></li>
+    <li><a href="https://medusajs.com/" data-url="https://medusajs.com/" class="hover:underline flex items-center">Medusa</a></li>
+  </ul>
+</div>
+   <p style="font-weight: 400; font-size: small;" data-aos="slide-right">Want a website? Email me: <strong>wlratkowski@gmail.com</strong></p>
+   <br>
+    <span class="text-gray-300 text-base">(Scroll down to see my projects)</span>
+    <div class="h-12"></div>
+  </div>
 
-    </div>
+  
 
-<!-- Cards section -->
-<div class="w-full overflow-x-auto">
-  <div class="flex flex-row gap-2 px-4 py-6 w-max">
-    <!-- Card 1 -->
-     <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+  <!-- Cards section -->
+  <div id="projects" class="w-full pb-20" style="position:relative; z-index:1001;">
+     <p class="text-3xl mb-2 no-trans text-white font-bold" style="z-index:1002;  border-radius:0.5rem; display:inline-block; padding:0.25rem 1rem; position:relative;">
+      My Websites: More coming soon.
+    </p>
+    <div 
+  class="grid" 
+  style="grid-template-columns: repeat(3, 288px); column-gap: 32px; row-gap: 40px; justify-content: center; padding: 40px 0;"
+>
+      
+     <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-12" src="pen-solid.svg" alt="Seachr" />
 </figure>
@@ -185,7 +230,7 @@ canvas {
 
 
      <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-0 h-95 w-95" src="https://webcheckr.tech/WebCheckrText.svg"  alt="eye" />
       </figure>
@@ -200,7 +245,7 @@ canvas {
 
 
 
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-6" src="compass-solid.svg" alt="Seachr" />
 </figure>
@@ -214,7 +259,7 @@ canvas {
     </div>
 
 
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
      <figure class="h-48 flex justify-center items-center overflow-hidden">
   <span class="text-[7rem] font-extrabold text-blue-700 select-none">R.</span>
 </figure>
@@ -230,7 +275,7 @@ canvas {
 
 
     <!-- Card 1 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full" src="logo.ico" alt="NitroTab" />
       </figure>
@@ -246,7 +291,7 @@ canvas {
     
 
     <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-6" src="https://wlreditor.site/code-solid.svg" alt="WLREditor" />
       </figure>
@@ -261,7 +306,7 @@ canvas {
 
 
     <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-6" src="Grass_Block.webp" alt="404" />
       </figure>
@@ -276,7 +321,7 @@ canvas {
 
 
     <!-- Card 2 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full" src="fish-solid (2).svg" alt="SlurpAI" />
       </figure>
@@ -291,7 +336,7 @@ canvas {
 
 
    <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-6" src="https://404-found.com/images/check-solid.svg" alt="404" />
       </figure>
@@ -305,7 +350,7 @@ canvas {
     </div>
 
 
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-6" src="magnifying-glass-solid.svg" alt="404" />
       </figure>
@@ -320,7 +365,7 @@ canvas {
 
 
     <!-- Card 3 -->
-   <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+   <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
         <img class="object-contain h-full p-6" src="https://summarizerai.site/imgs/newspaper-regular.png" alt="404" />
       </figure>
@@ -335,7 +380,7 @@ canvas {
 
 
 
-      <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
+      <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
       <figure class="h-48 flex justify-center items-center overflow-hidden">
   <img class="object-contain h-full p-6" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
 </figure>
@@ -348,23 +393,21 @@ canvas {
       </div>
     </div>
 
-    
-
-    <!-- Card 3 -->
-   <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="https://www.willratkowski.site/code-solid.svg" alt="404" />
-      </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">My Portfolito</h2>
-        <p class="text-center">This is my portfolio site. It showcases the websites I've made. (Check it out—it's cool!)</p>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://www.willratkowski.site/" target="_blank" class="text-white btn btn-primary"> https://www.willratkowski.site</a>
+    <!-- Centered last card -->
+    <div class="flex justify-center col-span-full w-full">
+      <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
+        <figure class="h-48 flex justify-center items-center overflow-hidden">
+          <img class="object-contain h-full p-6" src="https://www.willratkowski.site/code-solid.svg" alt="404" />
+        </figure>
+        <div class="card-body text-black">
+          <h2 class="card-title justify-center font-bold">My Portfolito</h2>
+          <p class="text-center">This is my portfolio site. It showcases the websites I've made. (Check it out—it's cool!)</p>
+          <div class="card-actions justify-center mt-4">
+            <a href="https://www.willratkowski.site/" target="_blank" class="text-white btn btn-primary"> https://www.willratkowski.site</a>
+          </div>
         </div>
       </div>
     </div>
-    
-    
   </div>
 </div>
 
@@ -373,10 +416,17 @@ canvas {
 
 
   </div>
-  
-<br>
-  <br>
-  
+
+  <!-- Footer -->
+<footer class="w-full text-center py-6  text-gray-300 bg-transparent z-10 relative">
+  &copy; 2025 Will Ratkowski &mdash; <a href="mailto:wlratkowski@gmail.com" class="underline hover:text-white">Contact Me</a>
+</footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
   <script>
 
 document.getElementById('trickyBtn').addEventListener('click', function() {
@@ -526,6 +576,7 @@ const canvas = document.getElementById("walkerCanvas");
      // Select the container holding the cards
   const cardContainer = document.querySelector('.w-full.overflow-x-auto');
 
+  /*
 cardContainer.addEventListener('wheel', (event) => {
   // Prevent default scrolling behavior (vertical scroll)
   event.preventDefault();
@@ -533,6 +584,7 @@ cardContainer.addEventListener('wheel', (event) => {
   // Adjust the scroll by a certain amount based on the wheel delta
   cardContainer.scrollLeft += event.deltaY;
 });
+*/
     // Add favicons
     window.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('a[data-url]');
@@ -549,17 +601,8 @@ cardContainer.addEventListener('wheel', (event) => {
       });
     });
 
-    // Toggle sidebar on mobile
-    const toggleButton = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-
-    toggleButton.addEventListener('click', () => {
-      if (sidebar.classList.contains('-translate-x-full')) {
-        sidebar.classList.remove('-translate-x-full');
-      } else {
-        sidebar.classList.add('-translate-x-full');
-      }
-    });
+    
   </script>
+
 </body>
 </html>
