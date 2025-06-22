@@ -132,11 +132,39 @@ canvas {
   #projects .card {
     margin-left: auto !important;
     margin-right: auto !important;
+    max-width: 320px !important;
+  }
+  /* Make images responsive on mobile */
+  #projects .card figure {
+    height: 120px !important;
+    padding: 0.5rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  #projects .card figure img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  /* Make tech stack text lighter on mobile */
+  #projects .card .text-black {
+    color: #6b7280 !important;
   }
 }
 @media (max-width: 640px) {
   #skills {
     margin-top: 80px !important;
+  }
+  /* Further adjust image sizes for smaller screens */
+  #projects .card figure {
+    height: 100px !important;
+    padding: 0.5rem !important;
+  }
+  #projects .card {
+    max-width: 300px !important;
   }
 }
 </style>
@@ -224,489 +252,561 @@ canvas {
   class="grid" 
   style="grid-template-columns: repeat(3, 288px); column-gap: 10px; row-gap: 10px; justify-content: center; padding: 40px 0;"
 >
-      
-     <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-12" src="pen-solid.svg" alt="Seachr" />
-</figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">Text.js</h2>
-        <p class="text-center">On Page Text Editor</p>
-
-
-    <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <!-- Stack -->
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-1 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-1 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-1 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://tailwindcss.com/" class="flex items-center gap-1 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-  </a>
-</div>
-
-
-        <div class="card-actions justify-center mt-4">
-          <a href="https://textjs.tech" target="_blank" class="text-white btn btn-primary">https://textjs.tech</a>
-        </div>
-      </div>
-    </div>
-    
-
-
-     <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-0 h-95 w-95" src="https://webcheckr.tech/WebCheckrText.svg"  alt="eye" />
+        <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="pen-solid.svg" alt="Seachr" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">WebCheckr</h2>
-        <p class="text-center">Website feedback site</p>
 
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">Text.js</h2>
+        <p class="text-gray-600 mb-4">On Page Text Editor</p>
 
-   <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <!-- Stack -->
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/" class="flex items-center gap-1 hover:underline" target="_blank">
-    Tailwind
-  </a>
-  <a href="https://stripe.com" data-url="https://stripe.com" class="flex items-center gap-1 hover:underline" target="_blank">
-    Stripe
-  </a>
-  <a href="https://www.typeform.com/" data-url="https://www.typeform.com/" class="flex items-center gap-1 hover:underline" target="_blank">
-    Typeform
-  </a>
-</div>
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://tailwindcss.com/" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
+          </a>
+        </div>
 
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://textjs.tech" target="_blank" class="btn btn-primary w-full">Visit Text.js</a>
+        </div>
+      </div>
+    </div>
+         <!-- Card 3 -->
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="https://webcheckr.tech/WebCheckrText.svg" alt="eye" />
+      </figure>
 
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">WebCheckr</h2>
+        <p class="text-gray-600 mb-4">Website feedback site</p>
 
-        <div class="card-actions justify-center mt-4">
-          <a href="https://webcheckr.tech/" target="_blank" class="text-white btn btn-primary">https://webcheckr.tech</a>
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://tailwindcss.com/" target="_blank" class="hover:underline">
+            Tailwind
+          </a>
+          <a href="https://stripe.com" target="_blank" class="hover:underline">
+            Stripe
+          </a>
+          <a href="https://www.typeform.com/" target="_blank" class="hover:underline">
+            Typeform
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://webcheckr.tech/" target="_blank" class="btn btn-primary w-full">Visit WebCheckr</a>
         </div>
       </div>
     </div>
 
 
 
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="chat.png" alt="Seachr" />
-</figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">Chat</h2>
-        <p class="text-center">AI Chat Bot</p>
+   <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+  <!-- Image Section -->
+  <figure class="bg-gray-100 h-48 flex justify-center items-center">
+    <img class="object-contain h-36 p-4" src="chat.png" alt="Chat Bot Logo" />
+  </figure>
 
+  <!-- Content Section -->
+  <div class="card-body text-black text-center px-6 py-4">
+    <h2 class="text-xl font-bold mb-1">Chat</h2>
+    <p class="text-gray-600 mb-4">AI chatbot</p>
 
-        <!-- TOOL STACK SECTION -->
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://console.groq.com/docs/api-reference" data-url="console.groq.com" class="flex items-center gap-2 hover:underline" target="_blank">
-    Groq API
-  </a>
-  <a href="https://nodejs.org" data-url="nodejs.org" class="flex items-center gap-2 hover:underline" target="_blank">
-    Node.js
-  </a>
-  <a href="https://firebase.google.com" data-url="firebase.google.com" class="flex items-center gap-2 hover:underline" target="_blank">
-    Firebase
-  </a>
+    <!-- Tool Stack -->
+    <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="flex items-center gap-2 hover:underline">
+        <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+      </a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="flex items-center gap-2 hover:underline">
+        <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+      </a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="flex items-center gap-2 hover:underline">
+        <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JS" /> JavaScript
+      </a>
+      <a href="https://console.groq.com/docs/api-reference" target="_blank" class="hover:underline">
+        Groq API
+      </a>
+      <a href="https://nodejs.org" target="_blank" class="hover:underline">
+        Node.js
+      </a>
+      <a href="https://firebase.google.com" target="_blank" class="hover:underline">
+        Firebase
+      </a>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="card-actions justify-center">
+      <a href="https://officialchat.tech" target="_blank" class="btn btn-primary w-full">
+        Visit Chat
+      </a>
+    </div>
+  </div>
 </div>
 
 
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="cloudy.png" alt="TempTracker" />
+      </figure>
 
-        <div class="card-actions justify-center mt-4">
-          <a href="https://chat-w238.onrender.com" target="_blank" class="text-white btn btn-primary">https://officialchat.tech</a>
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">TempTracker</h2>
+        <p class="text-gray-600 mb-4">Weather app</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://tailwindcss.com/" target="_blank" class="hover:underline">
+            Tailwind
+          </a>
+          <a href="https://open-meteo.com" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://open-meteo.com/favicon.ico" alt="Open-Meteo" style="width: 24px; height: 24px;" /> Open-Meteo
+          </a>
+          <a href="https://leafletjs.com/" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://leafletjs.com/docs/images/favicon.ico" alt="Leaflet.js" style="width: 24px; height: 24px;" /> Leaflet.js
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://temptracker-03dh.onrender.com" target="_blank" class="btn btn-primary w-full">Visit TempTracker</a>
         </div>
       </div>
     </div>
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="translate.png" alt="SnappyTranslate" />
+      </figure>
 
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">SnappyTranslate</h2>
+        <p class="text-gray-600 mb-4">Language Translation API</p>
 
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://console.groq.com/docs/api-reference" target="_blank" class="hover:underline">
+            Groq API
+          </a>
+          <a href="https://nodejs.org" target="_blank" class="hover:underline">
+            Node.js
+          </a>
+        </div>
 
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="compass-solid.svg" alt="Seachr" />
-</figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">Searchr</h2>
-        <p class="text-center">Custom New Tab</p>
-
-
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <!-- Stack -->
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/" class="flex items-center gap-1 hover:underline" target="_blank">
-    Tailwind
-  </a>
-</div>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://searchr.tech" target="_blank" class="text-white btn btn-primary">https://searchr.tech</a>
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://snappytranslate.tech/" target="_blank" class="btn btn-primary w-full">Visit SnappyTranslate</a>
         </div>
       </div>
     </div>
-
-
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="translate.png" alt="SnappyTranslate" />
-</figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">SnappyTranslate</h2>
-        <p class="text-center">Language Translation API</p>
-
-
-               <!-- TOOL STACK SECTION -->
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://console.groq.com/docs/api-reference" data-url="console.groq.com" class="flex items-center gap-2 hover:underline" target="_blank">
-    Groq API
-  </a>
-  <a href="https://nodejs.org" data-url="nodejs.org" class="flex items-center gap-2 hover:underline" target="_blank">
-    Node.js
-  </a>
-</div>
-
-
-        <div class="card-actions justify-center mt-4">
-          <a href="https://snappytranslate.tech/" target="_blank" class="text-white btn btn-primary">https://snappytranslate.tech</a>
-        </div>
-      </div>
-    </div>
-
-
 
     <!-- Card 1 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full" src="logo.ico" alt="NitroTab" />
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="logo.ico" alt="NitroTab" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">NitroTab</h2>
-        <p class="text-center">Enhanced Start Page</p>
 
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">NitroTab</h2>
+        <p class="text-gray-600 mb-4">Enhanced Start Page</p>
 
-          <!-- TOOL STACK SECTION -->
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://www.mongodb.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/mongodb.png" alt="MongoDB" /> MongoDB
-  </a>
-  <a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/" class="flex items-center gap-1 hover:underline" target="_blank">
-    Tailwind
-  </a>
-  <a href="https://www.electronjs.org/" data-url="https://www.electronjs.org/" class="flex items-center gap-2 hover:underline" target="_blank">
-    Electron
-  </a>
-  <a href="https://github.com/electron/packager" data-url="https://github.com/electron/packager" class="flex items-center gap-2 hover:underline" target="_blank">
-    Electron Packager
-  </a>
-</div>
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://www.mongodb.com/" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/mongodb.png" alt="MongoDB" /> MongoDB
+          </a>
+          <a href="https://tailwindcss.com/" target="_blank" class="hover:underline">
+            Tailwind
+          </a>
+          <a href="https://www.electronjs.org/" target="_blank" class="hover:underline">
+            Electron
+          </a>
+          <a href="https://github.com/electron/packager" target="_blank" class="hover:underline">
+            Electron Packager
+          </a>
+        </div>
 
-
-
-        <div class="card-actions justify-center mt-4">
-          <a href="https://Nitrotab.tech" target="_blank" class="text-white btn btn-primary">https://nitrotab.tech</a>
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://Nitrotab.tech" target="_blank" class="btn btn-primary w-full">Visit NitroTab</a>
         </div>
       </div>
     </div>
 
-    
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="compass-solid.svg" alt="Seachr" />
+      </figure>
 
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">Searchr</h2>
+        <p class="text-gray-600 mb-4">Custom New Tab</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://tailwindcss.com/" target="_blank" class="hover:underline">
+            Tailwind
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://searchr.tech" target="_blank" class="btn btn-primary w-full">Visit Searchr</a>
+        </div>
+      </div>
+    </div>
+
+        <!-- Card 3 -->
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="https://wlreditor.site/code-solid.svg" alt="WLREditor" />
+      </figure>
+
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">WLREditor</h2>
+        <p class="text-gray-600 mb-4">Inline code editor</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" target="_blank" class="hover:underline">
+            Monaco Editor API
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://wlreditor.site" target="_blank" class="btn btn-primary w-full">Visit WLREditor</a>
+        </div>
+      </div>
+    </div>      <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+     <!-- Image Section -->
+     <figure class="bg-gray-100 h-48 flex justify-center items-center">
+      <span class="text-[7rem] font-extrabold text-blue-700 select-none">R.</span>
+    </figure>
+
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">Rantify</h2>
+        <p class="text-gray-600 mb-4">Real users 100%</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+          <a href="https://console.groq.com/docs/api-reference" target="_blank" class="hover:underline">
+            Groq API
+          </a>
+          <a href="https://nodejs.org" target="_blank" class="hover:underline">
+            Node.js
+          </a>
+          <a href="https://firebase.google.com" target="_blank" class="hover:underline">
+            Firebase
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://rantify-8mu4.onrender.com" target="_blank" class="btn btn-primary w-full">Visit Rantify</a>
+        </div>
+      </div>
+    </div>
     <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="https://wlreditor.site/code-solid.svg" alt="WLREditor" />
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="Grass_Block.webp" alt="404" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">WLREditor</h2>
-        <p class="text-center">Inline code editor</p>
 
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">Minecraft2D</h2>
+        <p class="text-gray-600 mb-4">This is Minecraft in 2D</p>
 
-  <a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" data-url="https://microsoft.github.io/monaco-editor/typedoc/index.html" class="flex items-center gap-2 hover:underline" target="_blank">
-    <!-- Icon will be prepended by your JS favicon loader -->
-    Monaco Editor API
-  </a>
-</div>
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+        </div>
 
-
-        <div class="card-actions justify-center mt-4">
-          <a href="https://wlreditor.site" target="_blank" class="text-white btn btn-primary">https://wlreditor.site</a>
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://minecraft2d.onrender.com" target="_blank" class="btn btn-primary w-full">Visit Minecraft2D</a>
         </div>
       </div>
     </div>
-
-
-      <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-     <figure class="h-48 flex justify-center items-center overflow-hidden">
-  <span class="text-[7rem] font-extrabold text-blue-700 select-none">R.</span>
-</figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">Rantify</h2>
-        <p class="text-center">Real users 100%</p>
-
-
-               <!-- TOOL STACK SECTION -->
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://console.groq.com/docs/api-reference" data-url="console.groq.com" class="flex items-center gap-2 hover:underline" target="_blank">
-    Groq API
-  </a>
-  <a href="https://nodejs.org" data-url="nodejs.org" class="flex items-center gap-2 hover:underline" target="_blank">
-    Node.js
-  </a>
-  <a href="https://firebase.google.com" data-url="firebase.google.com" class="flex items-center gap-2 hover:underline" target="_blank">
-    Firebase
-  </a>
-</div>
-
-
-        <div class="card-actions justify-center mt-4">
-          <a href="https://rantify-8mu4.onrender.com" target="_blank" class="text-white btn btn-primary">https://rantify.us</a>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="Grass_Block.webp" alt="404" />
-      </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">Minecraft2D</h2>
-        <p class="text-center">This is Minecraft in 2D</p>
-
-<div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-</div>
-
-        <div class="card-actions justify-center mt-4">
-          <a href="https://minecraft2d.onrender.com" target="_blank" class="text-white btn btn-primary">https://minecraft2d.onrender.com</a>
-        </div>
-      </div>
-    </div>
-
-
     <!-- Card 2 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full" src="fish-solid (2).svg" alt="SlurpAI" />
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="fish-solid (2).svg" alt="SlurpAI" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">SlurpAI</h2>
-        <p class="text-center">Very simple chatbot</p>
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-</div>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://slurpai.onrender.com" target="_blank" class="text-white btn btn-primary">https://slurpai.onrender.com</a>
+
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">SlurpAI</h2>
+        <p class="text-gray-600 mb-4">Very simple chatbot</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://slurpai.onrender.com" target="_blank" class="btn btn-primary w-full">Visit SlurpAI</a>
         </div>
       </div>
     </div>
-
-
    <!-- Card 3 -->
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="https://404-found.com/images/check-solid.svg" alt="404" />
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="https://404-found.com/images/check-solid.svg" alt="404" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">404-Found</h2>
-        <p class="text-center">This is a blog site i own. Note all articles on this site where NOT written by me.</p>
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-</div>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://404-found.com" target="_blank" class="text-white btn btn-primary">https://404-found.com</a>
+
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">404-Found</h2>
+        <p class="text-gray-600 mb-4">This is a blog site i own. Note all articles on this site where NOT written by me.</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://404-found.com" target="_blank" class="btn btn-primary w-full">Visit 404-Found</a>
         </div>
       </div>
     </div>
-
-
-    <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="magnifying-glass-solid.svg" alt="404" />
+    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="magnifying-glass-solid.svg" alt="404" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">EpicAnalyzer</h2>
-        <p class="text-center">This is an SEO analyzer</p>
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-</div>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://epicanalyzer.onrender.com" target="_blank" class="text-white btn btn-primary">https://epicanalyzer.onrender.com</a>
+
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">EpicAnalyzer</h2>
+        <p class="text-gray-600 mb-4">This is an SEO analyzer</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://epicanalyzer.onrender.com" target="_blank" class="btn btn-primary w-full">Visit EpicAnalyzer</a>
         </div>
       </div>
     </div>
-
-
     <!-- Card 3 -->
-   <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-        <img class="object-contain h-full p-6" src="https://summarizerai.site/imgs/newspaper-regular.png" alt="404" />
+   <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="https://summarizerai.site/imgs/newspaper-regular.png" alt="404" />
       </figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">SummarizerAI</h2>
-        <p class="text-center">This is a AI article summarizer</p>
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
 
-</div>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://summarizerai.site" target="_blank" class="text-white btn btn-primary">https://summarizerai.site</a>
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">SummarizerAI</h2>
+        <p class="text-gray-600 mb-4">This is a AI article summarizer</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+          </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://summarizerai.site" target="_blank" class="btn btn-primary w-full">Visit SummarizerAI</a>
+        </div>
+      </div>
+    </div>
+      <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+      <!-- Image Section -->
+      <figure class="bg-gray-100 h-48 flex justify-center items-center">
+        <img class="object-contain h-36 p-4" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
+      </figure>
+
+      <!-- Content Section -->
+      <div class="card-body text-black text-center px-6 py-4">
+        <h2 class="text-xl font-bold mb-1">wlr-inc Github</h2>
+        <p class="text-gray-600 mb-4">My Github account</p>
+
+        <!-- Tool Stack -->
+        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+          <a href="https://git-scm.com/" target="_blank" class="hover:underline">Git</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="card-actions justify-center">
+          <a href="https://github.com/wlr-inc" target="_blank" class="btn btn-primary w-full">Visit GitHub</a>
         </div>
       </div>
     </div>
 
-
-
-      <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-      <figure class="h-48 flex justify-center items-center overflow-hidden">
-  <img class="object-contain h-full p-6" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
-</figure>
-      <div class="card-body text-black">
-        <h2 class="card-title justify-center font-bold">wlr-inc Github</h2>
-        <p class="text-center">My Github account</p>
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-        <a href="https://git-scm.com/" data-url="https://git-scm.com/" class="hover:underline flex items-center">Git</a>
-        </div>
-        <div class="card-actions justify-center mt-4">
-          <a href="https://github.com/wlr-inc" target="_blank" class="text-white btn btn-primary">https://github.com/wlr-inc</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Centered last card -->
-   
-      <div class="card w-72 h-[350px] sm:h-[450px] bg-base-100 shadow-md shrink-0" data-aos="flip-right">
-        <figure class="h-48 flex justify-center items-center overflow-hidden">
-          <img class="object-contain h-full p-6" src="https://www.willratkowski.site/code-solid.svg" alt="404" />
+    <!-- Centered last card -->      <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
+        <!-- Image Section -->
+        <figure class="bg-gray-100 h-48 flex justify-center items-center">
+          <img class="object-contain h-36 p-4" src="https://www.willratkowski.site/code-solid.svg" alt="404" />
         </figure>
-        <div class="card-body text-black">
-          <h2 class="card-title justify-center font-bold">My Portfolito</h2>
-          <p class="text-center">This is my portfolio site. It showcases the websites I've made. (Check it out—it's cool!)</p>
-          <div class="flex flex-wrap justify-center gap-3 text-sm text-black font-bold mt-4" data-aos="fade-up">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-    <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-  </a>
-  <a href="https://tailwindcss.com/" data-url="https://tailwindcss.com/" class="flex items-center gap-1 hover:underline" target="_blank">
-    Tailwind
-  </a>
 
-</div>
-          <div class="card-actions justify-center mt-4">
-            <a href="https://www.willratkowski.site/" target="_blank" class="text-white btn btn-primary"> https://www.willratkowski.site</a>
-          
+        <!-- Content Section -->
+        <div class="card-body text-black text-center px-6 py-4">
+          <h2 class="text-xl font-bold mb-1">My Portfolio</h2>
+          <p class="text-gray-600 mb-4">This is my portfolio site. It showcases the websites I've made. (Check it out—it's cool!)</p>
+
+          <!-- Tool Stack -->
+          <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
+              <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
+              <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
+              <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
+            </a>
+            <a href="https://tailwindcss.com/" target="_blank" class="hover:underline">
+              Tailwind
+            </a>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="card-actions justify-center">
+            <a href="https://www.willratkowski.site/" target="_blank" class="btn btn-primary w-full">Visit Portfolio</a>
+          </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 
