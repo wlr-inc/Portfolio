@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
   <link rel="icon" href="code-solid.svg" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
@@ -15,10 +15,10 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  
+  font-family: 'Inter', sans-serif;
   z-index: 2;
- 
 }
+
     .animated-background {
       background: linear-gradient(-45deg, #a36aff, #8d31d9, #4e26bc, #ee1313);
       background-size: 400% 400%;
@@ -85,13 +85,6 @@
   animation-delay: calc(1s * var(--i));
 }
 
-.text-lg {
-  font-size: 1.5rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
 canvas {
   position: fixed;
   top: 0;
@@ -123,49 +116,495 @@ canvas {
   z-index: 20 !important;
 }
 
+/* Modern Browser Window Styles */
+.browser-window {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.browser-window:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.browser-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.browser-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.control-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-dot.close { background: #ff5f57; }
+.control-dot.minimize { background: #ffbd2e; }
+.control-dot.maximize { background: #28ca42; }
+
+.control-dot:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.address-bar {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-left: 12px;
+  font-size: 12px;
+  color: #6b7280;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.browser-content {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iframe-wrapper {
+  position: relative;
+  transform-origin: center center;
+  transform: scale(0.32); /* Calculated to fill width: 380px * 0.32 ≈ 1280px */
+  width: 1280px;
+  height: 875px; /* Adjusted to fill height properly */
+}
+
+.iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* Force desktop view */
+  min-width: 1280px;
+  overflow-x: hidden;
+}
+
+/* Project Grid Styles */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.project-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.browser-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-info {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 12px 12px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 220px;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-description {
+  color: #6b7280;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  flex-grow: 1;
+  min-height: 48px;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  min-height: 60px;
+  align-content: flex-start;
+}
+
+.tech-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.tech-tag:hover {
+  background: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.tech-tag img {
+  width: 16px;
+  height: 16px;
+}
+
+.visit-button {
+  width: 100%;
+  background: blueviolet ;
+  color: rgb(28, 28, 28);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(33, 33, 33, 0.3);
+  margin-top: auto;
+}
+
+.visit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(41, 41, 41, 0.4);
+  color: white;
+}
+
+/* Loading animation for iframes */
+.iframe-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #9ca3af;
+  font-size: 14px;
+  z-index: 1;
+}
+
+/* Additional iframe optimization */
+.iframe-wrapper {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  /* Ensure desktop width simulation */
+  width: 1280px;
+  min-width: 1280px;
+}
+
+.iframe-wrapper iframe {
+ 
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* Additional desktop forcing */
+  zoom: 1;
+  transform: scale(1);
+}
+
+
+
   </style>
 <style>
-@media (max-width: 768px) {
-  #projects .grid {
-    grid-template-columns: 1fr !important;
-    justify-content: center !important;
-  }
-  #projects .card {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 320px !important;
-  }
-  /* Make images responsive on mobile */
-  #projects .card figure {
-    height: 120px !important;
-    padding: 0.5rem !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-  #projects .card figure img {
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: contain !important;
-    width: auto !important;
-    height: auto !important;
-  }
-  /* Make tech stack text lighter on mobile */
-  #projects .card .text-black {
-    color: #6b7280 !important;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
   }
 }
-@media (max-width: 640px) {
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+  }
+  
+  .browser-window {
+    border-radius: 8px;
+  }
+  
+  .browser-content {
+    height: 240px;
+  }
+  
+  .iframe-wrapper {
+    transform: scale(0.28); /* Calculated for mobile width fill */
+    width: 1280px;
+    height: 857px; /* Adjusted for mobile height */
+  }
+  
+  .project-info {
+    padding: 20px;
+    min-height: 200px;
+  }
+  
+  .project-title {
+    font-size: 1.25rem;
+  }
+  
+  .project-description {
+    min-height: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .tech-stack {
+    gap: 6px;
+    min-height: 50px;
+  }
+  
+  .tech-tag {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
   #skills {
     margin-top: 80px !important;
   }
-  /* Further adjust image sizes for smaller screens */
-  #projects .card figure {
-    height: 100px !important;
-    padding: 0.5rem !important;
+
+  /* Hero section mobile adjustments */
+  .ikh {
+    padding: 4px 16px !important;
   }
-  #projects .card {
-    max-width: 300px !important;
+  
+  .ikh h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .ikh ul {
+    gap: 2px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+  }
+  
+  .browser-content {
+    height: 200px;
+  }
+  
+  .iframe-wrapper {
+    transform: scale(0.25); /* Calculated for small mobile width fill */
+    width: 1280px;
+    height: 800px; /* Adjusted for small mobile height */
+  }
+  
+  .project-info {
+    padding: 16px;
+    min-height: 180px;
+  }
+  
+  .project-title {
+    font-size: 1.1rem;
+  }
+  
+  .project-description {
+    min-height: 36px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .tech-stack {
+    min-height: 45px;
+    gap: 4px;
+  }
+  
+  .tech-tag {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+  
+  .address-bar {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  
+  .browser-controls {
+    gap: 4px;
+  }
+  
+  .control-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Hero section small mobile adjustments */
+  .ikh {
+    padding: 3px 12px !important;
+  }
+  
+  .ikh h2 {
+    font-size: 1.3rem !important;
+    margin-bottom: 16px !important;
+  }
+  
+  .ikh ul {
+    gap: 1px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Navbar mobile adjustments */
+  nav {
+    padding: 12px 16px !important;
+  }
+  
+  nav span {
+    font-size: 1rem !important;
+  }
+  
+  nav .flex {
+    gap: 16px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Enhanced glassmorphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+/* Smooth section transitions */
+.section-divider {
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
+  margin: 60px 0;
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+  .projects-grid {
+    padding: 0 8px;
+    gap: 16px;
+  }
+  
+  .project-info {
+    padding: 12px;
+    min-height: 160px;
+  }
+  
+  .project-title {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  
+  .project-description {
+    min-height: 32px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  
+  .tech-stack {
+    min-height: 40px;
+    margin-bottom: 16px;
+    gap: 3px;
+  }
+  
+  .tech-tag {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+  
+  .visit-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .browser-content {
+    height: 180px;
+  }
+  
+  .iframe-wrapper {
+    transform: scale(0.22);
+  }
+  
+  /* Hero section extra small mobile */
+  #skills {
+    margin-top: 100px !important;
+  }
+  
+  .ikh {
+    padding: 2px 8px !important;
+  }
+  
+  .ikh h2 {
+    font-size: 1.1rem !important;
+  }
+  
+  .ikh ul {
+    font-size: 0.75rem !important;
+  }
+  
+  /* Projects section title mobile */
+  .text-center h2 {
+    font-size: 2rem !important;
+  }
+  
+  .text-center p {
+    font-size: 1rem !important;
+    padding: 0 16px;
   }
 }
 </style>
@@ -246,595 +685,838 @@ canvas {
 
   <!-- Cards section -->
   <div id="projects" class="w-full pb-20" style="position:relative; z-index:1001;">
-     <p class="text-3xl mb-2 no-trans text-white font-bold" style="z-index:1002;  border-radius:0.5rem; display:inline-block; padding:0.25rem 1rem; position:relative;">
-      My Websites: More coming soon.
-    </p>
-    <div 
-  class="grid" 
-  style="grid-template-columns: repeat(3, 288px); column-gap: 10px; row-gap: 10px; justify-content: center; padding: 40px 0;"
->
-        <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-center">
-          <a style="font-family: 'Orbitron', sans-serif; font-weight: 900; color: rgb(75, 85, 99);" href="#" class="flex items-center justify-center space-x-1 text-2xl">
-            Open<img src="game.png" alt="OpenGames Logo" class="-ml-1 -mr-1 w-12 h-12 object-contain">Games
-          </a>
-        </h3>
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">OpenGames</h2>
-        <p class="text-gray-600 mb-4">Online games site</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-          <a href="https://tailwindcss.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-          </a>
+   
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 no-trans">My Projects</h2>
+      <p class="text-xl text-gray-300 no-trans">Modern web applications built with cutting-edge technologies</p>
+    </div>
+    
+    <div class="projects-grid">
+      <!-- OpenGames Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://opengames.online</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://opengames.online" loading="lazy" title="OpenGames Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="game.png" alt="OpenGames Icon" class="w-6 h-6" />
+              OpenGames
+            </h3>
+            <p class="project-description">A modern online gaming platform featuring curated games with authentic metadata and smooth user experience.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+            </div>
+            <a href="https://opengames.online/" target="_blank" class="visit-button">Visit OpenGames</a>
+          </div>
         </div>
+      </div>
+      <!-- WebCheckr Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://webcheckr.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://webcheckr.tech" loading="lazy" title="WebCheckr Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="eye-solid.webp" alt="WebCheckr Icon" class="w-6 h-6" />
+              WebCheckr
+            </h3>
+            <p class="project-description">Professional website feedback platform with Stripe integration and advanced analytics for businesses.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+              <a href="https://stripe.com" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/stripe.png" alt="Stripe" /> Stripe
+              </a>
+              <a href="https://www.typeform.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/survey.png" alt="Typeform" /> Typeform
+              </a>
+            </div>
+            <a href="https://webcheckr.tech/" target="_blank" class="visit-button">Visit WebCheckr</a>
+          </div>
+        </div>
+      </div>
 
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="http://opengames.online/" target="_blank" class="btn btn-primary w-full">Visit OpenGames</a>
+
+
+      <!-- Chat Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://officialchat.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://officialchat.tech" loading="lazy" title="Chat Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="chat.png" alt="Chat Icon" class="w-6 h-6" />
+              Chat
+            </h3>
+            <p class="project-description">Advanced AI chatbot powered by Groq API with Firebase backend and real-time messaging capabilities.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://console.groq.com/docs/api-reference" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/api.png" alt="Groq API" /> Groq API
+              </a>
+              <a href="https://nodejs.org" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/nodejs.png" alt="Node.js" /> Node.js
+              </a>
+              <a href="https://firebase.google.com" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/firebase.png" alt="Firebase" /> Firebase
+              </a>
+            </div>
+            <a href="https://officialchat.tech" target="_blank" class="visit-button">Visit Chat</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Text.js Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://textjs.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://textjs.tech" loading="lazy" title="Text.js Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="pen-solid.svg" alt="Text.js Icon" class="w-6 h-6" />
+              Text.js
+            </h3>
+            <p class="project-description">Powerful on-page text editor with real-time editing capabilities and modern interface design.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+            </div>
+            <a href="https://textjs.tech" target="_blank" class="visit-button">Visit Text.js</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- TempTracker Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://temptracker-03dh.onrender.com</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://temptracker-03dh.onrender.com" loading="lazy" title="TempTracker Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="cloudy.png" alt="TempTracker Icon" class="w-6 h-6" />
+              TempTracker
+            </h3>
+            <p class="project-description">Advanced weather application with interactive maps, real-time forecasts, and location-based weather tracking.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+              <a href="https://open-meteo.com" class="tech-tag" target="_blank">
+                <img src="https://open-meteo.com/favicon.ico" alt="Open-Meteo" style="width: 16px; height: 16px;" /> Open-Meteo
+              </a>
+              <a href="https://leafletjs.com/" class="tech-tag" target="_blank">
+                <img src="https://leafletjs.com/docs/images/favicon.ico" alt="Leaflet.js" style="width: 16px; height: 16px;" /> Leaflet.js
+              </a>
+            </div>
+            <a href="https://temptracker-03dh.onrender.com" target="_blank" class="visit-button">Visit TempTracker</a>
+          </div>
+        </div>
+      </div>
+      <!-- SnappyTranslate Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://snappytranslate.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://snappytranslate.tech" loading="lazy" title="SnappyTranslate Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="translate.png" alt="SnappyTranslate Icon" class="w-6 h-6" />
+              SnappyTranslate
+            </h3>
+            <p class="project-description">Fast and accurate language translation API with real-time processing and multi-language support.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://console.groq.com/docs/api-reference" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/api.png" alt="Groq API" /> Groq API
+              </a>
+              <a href="https://nodejs.org" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/nodejs.png" alt="Node.js" /> Node.js
+              </a>
+            </div>
+            <a href="https://snappytranslate.tech/" target="_blank" class="visit-button">Visit SnappyTranslate</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NitroTab Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="700">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://nitrotab.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://nitrotab.tech" loading="lazy" title="NitroTab Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="logo.ico" alt="NitroTab Icon" class="w-6 h-6" />
+              NitroTab
+            </h3>
+            <p class="project-description">Enhanced start page application with MongoDB backend, customizable widgets, and Electron desktop integration.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://www.mongodb.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/mongodb.png" alt="MongoDB" /> MongoDB
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+              <a href="https://www.electronjs.org/" class="tech-tag" target="_blank">
+                <img src="https://www.electronjs.org/assets/img/favicon.ico" alt="Electron" style="width: 16px; height: 16px;" /> Electron
+              </a>
+              <a href="https://github.com/electron/packager" class="tech-tag" target="_blank">
+                <img src="https://www.electronjs.org/assets/img/favicon.ico" alt="Electron Packager" style="width: 16px; height: 16px;" /> Packager
+              </a>
+            </div>
+            <a href="https://nitrotab.tech" target="_blank" class="visit-button">Visit NitroTab</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Searchr Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="800">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://searchr.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://searchr.tech" loading="lazy" title="Searchr Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="compass-solid.svg" alt="Searchr Icon" class="w-6 h-6" />
+              Searchr
+            </h3>
+            <p class="project-description">Custom new tab page with personalized search functionality and clean, minimalist design interface.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+            </div>
+            <br>
+            <a href="https://searchr.tech" target="_blank" class="visit-button">Visit Searchr</a>
+          </div>
+        </div>
+      </div>
+      <!-- WLREditor Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="900">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://wlreditor.site</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://wlreditor.site" loading="lazy" title="WLREditor Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="https://wlreditor.site/code-solid.svg" alt="WLREditor Icon" class="w-6 h-6" />
+              WLREditor
+            </h3>
+            <p class="project-description">Advanced inline code editor with Monaco Editor integration and multiple language support for web development.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/visual-studio-code-2019.png" alt="Monaco Editor" /> Monaco Editor
+              </a>
+            </div>
+            <a href="https://wlreditor.site" target="_blank" class="visit-button">Visit WLREditor</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rantify Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1000">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://rantify-8mu4.onrender.com</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://rantify-8mu4.onrender.com" loading="lazy" title="Rantify Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <span class="text-2xl font-extrabold text-blue-700 select-none">R.</span>
+              Rantify
+            </h3>
+            <p class="project-description">Social platform for real users with authentic interactions and community-driven content sharing.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://console.groq.com/docs/api-reference" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/api.png" alt="Groq API" /> Groq API
+              </a>
+              <a href="https://nodejs.org" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/nodejs.png" alt="Node.js" /> Node.js
+              </a>
+              <a href="https://firebase.google.com" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/firebase.png" alt="Firebase" /> Firebase
+              </a>
+            </div>
+            <a href="https://rantify-8mu4.onrender.com" target="_blank" class="visit-button">Visit Rantify</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minecraft2D Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1100">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://minecraft2d.onrender.com</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://minecraft2d.onrender.com" loading="lazy" title="Minecraft2D Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="Grass_Block.webp" alt="Minecraft2D Icon" class="w-6 h-6" />
+              Minecraft2D
+            </h3>
+            <p class="project-description">2D recreation of the classic Minecraft experience with building mechanics and familiar gameplay.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+            </div>
+            <a href="https://minecraft2d.onrender.com" target="_blank" class="visit-button">Visit Minecraft2D</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SlurpAI Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1200">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://slurpai.onrender.com</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://slurpai.onrender.com" loading="lazy" title="SlurpAI Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="fish-solid (2).svg" alt="SlurpAI Icon" class="w-6 h-6" />
+              SlurpAI
+            </h3>
+            <p class="project-description">Simple AI chatbot interface with clean design and efficient conversation handling.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+            </div>
+            <a href="https://slurpai.onrender.com" target="_blank" class="visit-button">Visit SlurpAI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 404-Found Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1300">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://404-found.com</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://404-found.com" loading="lazy" title="404-Found Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="https://404-found.com/images/check-solid.svg" alt="404-Found Icon" class="w-6 h-6" />
+              404-Found
+            </h3>
+            <p class="project-description">Blog platform featuring curated articles and content discovery with clean, readable design.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+            </div>
+            <a href="https://404-found.com" target="_blank" class="visit-button">Visit 404-Found</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EpicAnalyzer Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1400">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://epicanalyzer.onrender.com</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://epicanalyzer.onrender.com" loading="lazy" title="EpicAnalyzer Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="magnifying-glass-solid.svg" alt="EpicAnalyzer Icon" class="w-6 h-6" />
+              EpicAnalyzer
+            </h3>
+            <p class="project-description">Professional SEO analysis tool for website optimization and search engine performance insights.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+            </div>
+            <a href="https://epicanalyzer.onrender.com" target="_blank" class="visit-button">Visit EpicAnalyzer</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SummarizerAI Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1500">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://summarizerai.site</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://summarizerai.site" loading="lazy" title="SummarizerAI Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="https://summarizerai.site/imgs/newspaper-regular.png" alt="SummarizerAI Icon" class="w-6 h-6" />
+              SummarizerAI
+            </h3>
+            <p class="project-description">AI-powered article summarization tool for quick content analysis and efficient information processing.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+            </div>
+            <a href="https://summarizerai.site" target="_blank" class="visit-button">Visit SummarizerAI</a>
+          </div>
+        </div>
+      </div>
+
+     <!-- GitHub Project -->
+<div class="project-card" data-aos="fade-up" data-aos-delay="1600">
+  <div class="browser-window">
+    <div class="browser-header">
+      <div class="browser-controls">
+        <div class="control-dot close"></div>
+        <div class="control-dot minimize"></div>
+        <div class="control-dot maximize"></div>
+      </div>
+      <div class="address-bar">https://github.com/wlr-inc</div>
+    </div>
+    <div class="browser-content">
+      <div class="iframe-container">
+        <div class="flex items-center justify-center h-full bg-gray-100">
+          <img 
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+            alt="GitHub Logo" 
+            class="w-32 h-32 object-contain opacity-70"
+          />
         </div>
       </div>
     </div>
-         <!-- Card 3 -->
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="https://webcheckr.tech/WebCheckrText.svg" alt="eye" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">WebCheckr</h2>
-        <p class="text-gray-600 mb-4">Website feedback site</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>          <a href="https://tailwindcss.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-          </a>
-          <a href="https://stripe.com" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/stripe.png" alt="Stripe" /> Stripe
-          </a>
-          <a href="https://www.typeform.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/survey.png" alt="Typeform" /> Typeform
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://webcheckr.tech/" target="_blank" class="btn btn-primary w-full">Visit WebCheckr</a>
-        </div>
+    <div class="project-info">
+      <h3 class="project-title">
+        <img src="https://img.icons8.com/material-outlined/24/github.png" alt="GitHub Icon" class="w-6 h-6" />
+        wlr-inc GitHub
+      </h3>
+      <p class="project-description">Open source code repository showcasing various development projects and contributions.</p>
+      <div class="tech-stack">
+        <a href="https://git-scm.com/" class="tech-tag" target="_blank">
+          <img src="https://img.icons8.com/color/16/git.png" alt="Git" /> Git
+        </a>
       </div>
-    </div>
-
-
-
-   <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-  <!-- Image Section -->
-  <figure class="bg-gray-100 h-48 flex justify-center items-center">
-    <img class="object-contain h-36 p-4" src="chat.png" alt="Chat Bot Logo" />
-  </figure>
-
-  <!-- Content Section -->
-  <div class="card-body text-black text-center px-6 py-4">
-    <h2 class="text-xl font-bold mb-1">Chat</h2>
-    <p class="text-gray-600 mb-4">AI chatbot</p>
-
-    <!-- Tool Stack -->
-    <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="flex items-center gap-2 hover:underline">
-        <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-      </a>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="flex items-center gap-2 hover:underline">
-        <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-      </a>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="flex items-center gap-2 hover:underline">
-        <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JS" /> JavaScript
-      </a>      <a href="https://console.groq.com/docs/api-reference" target="_blank" class="flex items-center gap-2 hover:underline">
-        <img src="https://img.icons8.com/color/24/api.png" alt="Groq API" /> Groq API
-      </a>
-      <a href="https://nodejs.org" target="_blank" class="flex items-center gap-2 hover:underline">
-        <img src="https://img.icons8.com/color/24/nodejs.png" alt="Node.js" /> Node.js
-      </a>
-      <a href="https://firebase.google.com" target="_blank" class="flex items-center gap-2 hover:underline">
-        <img src="https://img.icons8.com/color/24/firebase.png" alt="Firebase" /> Firebase
-      </a>
-    </div>
-
-    <!-- CTA Button -->
-    <div class="card-actions justify-center">
-      <a href="https://officialchat.tech" target="_blank" class="btn btn-primary w-full">
-        Visit Chat
-      </a>
+      <a href="https://github.com/wlr-inc" target="_blank" class="visit-button">Visit GitHub</a>
     </div>
   </div>
 </div>
 
-
-<div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="pen-solid.svg" alt="Seachr" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">Text.js</h2>
-        <p class="text-gray-600 mb-4">On Page Text Editor</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-          <a href="https://tailwindcss.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://textjs.tech" target="_blank" class="btn btn-primary w-full">Visit Text.js</a>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="cloudy.png" alt="TempTracker" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">TempTracker</h2>
-        <p class="text-gray-600 mb-4">Weather app</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>          <a href="https://tailwindcss.com/" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-          </a>
-          <a href="https://open-meteo.com" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://open-meteo.com/favicon.ico" alt="Open-Meteo" style="width: 24px; height: 24px;" /> Open-Meteo
-          </a>
-          <a href="https://leafletjs.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://leafletjs.com/docs/images/favicon.ico" alt="Leaflet.js" style="width: 24px; height: 24px;" /> Leaflet.js
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://temptracker-03dh.onrender.com" target="_blank" class="btn btn-primary w-full">Visit TempTracker</a>
-        </div>
-      </div>
-    </div>
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="translate.png" alt="SnappyTranslate" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">        <h2 class="text-xl font-bold mb-1">SnappyTranslate</h2>
-        <p class="text-gray-600 mb-4">Language Translation API</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-          <a href="https://console.groq.com/docs/api-reference" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/api.png" alt="Groq API" /> Groq API
-          </a>
-          <a href="https://nodejs.org" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/nodejs.png" alt="Node.js" /> Node.js
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://snappytranslate.tech/" target="_blank" class="btn btn-primary w-full">Visit SnappyTranslate</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 1 -->
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="logo.ico" alt="NitroTab" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">NitroTab</h2>
-        <p class="text-gray-600 mb-4">Enhanced Start Page</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-          <a href="https://www.mongodb.com/" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/mongodb.png" alt="MongoDB" /> MongoDB
-          </a>          <a href="https://tailwindcss.com/" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-          </a>
-          <a href="https://www.electronjs.org/" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img style="width: 24px; height: 24px;" src="https://www.electronjs.org/assets/img/favicon.ico" alt="Electron" /> Electron
-          </a>          <a href="https://github.com/electron/packager" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://www.electronjs.org/assets/img/favicon.ico" alt="Electron Packager" style="width: 24px; height: 24px;" /> Electron Packager
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://Nitrotab.tech" target="_blank" class="btn btn-primary w-full">Visit NitroTab</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="compass-solid.svg" alt="Seachr" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">        <h2 class="text-xl font-bold mb-1">Searchr</h2>
-        <p class="text-gray-600 mb-4">Custom New Tab</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-          <a href="https://tailwindcss.com/" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://searchr.tech" target="_blank" class="btn btn-primary w-full">Visit Searchr</a>
-        </div>
-      </div>
-    </div>
-
-        <!-- Card 3 -->
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="https://wlreditor.site/code-solid.svg" alt="WLREditor" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">WLREditor</h2>
-        <p class="text-gray-600 mb-4">Inline code editor</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>          <a href="https://microsoft.github.io/monaco-editor/typedoc/index.html" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/visual-studio-code-2019.png" alt="Monaco Editor" /> Monaco Editor API
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://wlreditor.site" target="_blank" class="btn btn-primary w-full">Visit WLREditor</a>
-        </div>
-      </div>
-    </div>      <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-     <!-- Image Section -->
-     <figure class="bg-gray-100 h-48 flex justify-center items-center">
-      <span class="text-[7rem] font-extrabold text-blue-700 select-none">R.</span>
-    </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">        <h2 class="text-xl font-bold mb-1">Rantify</h2>
-        <p class="text-gray-600 mb-4">Real users 100%</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-          <a href="https://console.groq.com/docs/api-reference" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/api.png" alt="Groq API" /> Groq API
-          </a>
-          <a href="https://nodejs.org" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/nodejs.png" alt="Node.js" /> Node.js
-          </a>
-          <a href="https://firebase.google.com" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/firebase.png" alt="Firebase" /> Firebase
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://rantify-8mu4.onrender.com" target="_blank" class="btn btn-primary w-full">Visit Rantify</a>
-        </div>
-      </div>
-    </div>
-    <!-- Card 3 -->
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="Grass_Block.webp" alt="404" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">Minecraft2D</h2>
-        <p class="text-gray-600 mb-4">This is Minecraft in 2D</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://minecraft2d.onrender.com" target="_blank" class="btn btn-primary w-full">Visit Minecraft2D</a>
-        </div>
-      </div>
-    </div>
-    <!-- Card 2 -->
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="fish-solid (2).svg" alt="SlurpAI" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">SlurpAI</h2>
-        <p class="text-gray-600 mb-4">Very simple chatbot</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://slurpai.onrender.com" target="_blank" class="btn btn-primary w-full">Visit SlurpAI</a>
-        </div>
-      </div>
-    </div>
-   <!-- Card 3 -->
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="https://404-found.com/images/check-solid.svg" alt="404" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">404-Found</h2>
-        <p class="text-gray-600 mb-4">This is a blog site i own. Note all articles on this site where NOT written by me.</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://404-found.com" target="_blank" class="btn btn-primary w-full">Visit 404-Found</a>
-        </div>
-      </div>
-    </div>
-    <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="magnifying-glass-solid.svg" alt="404" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">EpicAnalyzer</h2>
-        <p class="text-gray-600 mb-4">This is an SEO analyzer</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://epicanalyzer.onrender.com" target="_blank" class="btn btn-primary w-full">Visit EpicAnalyzer</a>
-        </div>
-      </div>
-    </div>
-    <!-- Card 3 -->
-   <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="https://summarizerai.site/imgs/newspaper-regular.png" alt="404" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">
-        <h2 class="text-xl font-bold mb-1">SummarizerAI</h2>
-        <p class="text-gray-600 mb-4">This is a AI article summarizer</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-            <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://summarizerai.site" target="_blank" class="btn btn-primary w-full">Visit SummarizerAI</a>
-        </div>
-      </div>
-    </div>
-      <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-      <!-- Image Section -->
-      <figure class="bg-gray-100 h-48 flex justify-center items-center">
-        <img class="object-contain h-36 p-4" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
-      </figure>
-
-      <!-- Content Section -->
-      <div class="card-body text-black text-center px-6 py-4">        <h2 class="text-xl font-bold mb-1">wlr-inc Github</h2>
-        <p class="text-gray-600 mb-4">My Github account</p>
-
-        <!-- Tool Stack -->
-        <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-          <a href="https://git-scm.com/" target="_blank" class="flex items-center gap-2 hover:underline">
-            <img src="https://img.icons8.com/color/24/git.png" alt="Git" /> Git
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="card-actions justify-center">
-          <a href="https://github.com/wlr-inc" target="_blank" class="btn btn-primary w-full">Visit GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Centered last card -->      <div class="card w-80 max-w-full h-auto bg-white shadow-xl rounded-2xl overflow-hidden transition-transform hover:scale-95 duration-300" data-aos="flip-right">
-        <!-- Image Section -->
-        <figure class="bg-gray-100 h-48 flex justify-center items-center">
-          <img class="object-contain h-36 p-4" src="https://www.willratkowski.site/code-solid.svg" alt="404" />
-        </figure>
-
-        <!-- Content Section -->
-        <div class="card-body text-black text-center px-6 py-4">
-          <h2 class="text-xl font-bold mb-1">My Portfolio</h2>
-          <p class="text-gray-600 mb-4">This is my portfolio site. It showcases the websites I've made. (Check it out—it's cool!)</p>
-
-          <!-- Tool Stack -->
-          <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-600 font-semibold mb-4">
-            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="flex items-center gap-2 hover:underline" target="_blank">
-              <img src="https://img.icons8.com/color/24/html-5--v1.png" alt="HTML" /> HTML
-            </a>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="flex items-center gap-2 hover:underline" target="_blank">
-              <img src="https://img.icons8.com/color/24/css3.png" alt="CSS" /> CSS
-            </a>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="flex items-center gap-2 hover:underline" target="_blank">
-              <img src="https://img.icons8.com/color/24/javascript--v1.png" alt="JavaScript" /> JavaScript
-            </a>            <a href="https://tailwindcss.com/" target="_blank" class="flex items-center gap-2 hover:underline">
-              <img src="https://img.icons8.com/color/24/tailwind_css.png" alt="Tailwind CSS" /> Tailwind
-            </a>
+      <!-- Portfolio Project -->
+      <div class="project-card" data-aos="fade-up" data-aos-delay="1700">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-dot close"></div>
+              <div class="control-dot minimize"></div>
+              <div class="control-dot maximize"></div>
+            </div>
+            <div class="address-bar">https://www.willratkowski.site</div>
           </div>
-
-          <!-- CTA Button -->
-          <div class="card-actions justify-center">
-            <a href="https://www.willratkowski.site/" target="_blank" class="btn btn-primary w-full">Visit Portfolio</a>
+          <div class="browser-content">
+            <div class="iframe-container">
+              <div class="iframe-wrapper">
+                <iframe src="https://www.willratkowski.site" loading="lazy" title="Portfolio Preview"></iframe>
+              </div>
+              <div class="iframe-loading">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">
+              <img src="code-solid.svg" alt="Portfolio Icon" class="w-6 h-6" />
+              My Portfolio
+            </h3>
+            <p class="project-description">Personal portfolio website showcasing development projects with modern design and interactive features.</p>
+            <div class="tech-stack">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/html-5--v1.png" alt="HTML" /> HTML
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/css3.png" alt="CSS" /> CSS
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/javascript--v1.png" alt="JavaScript" /> JavaScript
+              </a>
+              <a href="https://tailwindcss.com/" class="tech-tag" target="_blank">
+                <img src="https://img.icons8.com/color/16/tailwind_css.png" alt="Tailwind" /> Tailwind
+              </a>
+            </div>
+            <a href="https://www.willratkowski.site" target="_blank" class="visit-button">Visit Portfolio</a>
           </div>
         </div>
       </div>
@@ -858,6 +1540,56 @@ canvas {
 </script>
 
   <script>
+
+// Force desktop view for iframes
+function forceDesktopView() {
+  const iframes = document.querySelectorAll('.iframe-wrapper iframe');
+  
+  iframes.forEach(iframe => {
+    iframe.addEventListener('load', function() {
+      try {
+        // Try to access iframe document (may fail due to CORS)
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Remove existing viewport meta tag
+        const existingViewport = iframeDoc.querySelector('meta[name="viewport"]');
+        if (existingViewport) {
+          existingViewport.remove();
+        }
+        
+        // Add desktop viewport meta tag
+        const viewport = iframeDoc.createElement('meta');
+        viewport.name = 'viewport';
+        viewport.content = 'width=1280, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        iframeDoc.head.appendChild(viewport);
+        
+        // Force width on body
+        if (iframeDoc.body) {
+          iframeDoc.body.style.minWidth = '1280px';
+          iframeDoc.body.style.width = '1280px';
+        }
+      } catch (e) {
+        // CORS restriction - can't modify iframe content
+        // The CSS min-width and URL parameters will handle this
+        console.log('CORS restriction on iframe:', iframe.src);
+      }
+    });
+    
+    // Add desktop parameters to URL if possible
+    const url = new URL(iframe.src);
+    
+    // Common desktop view parameters
+    url.searchParams.set('desktop', '1');
+    url.searchParams.set('mobile', '0');
+    url.searchParams.set('viewport', 'desktop');
+    
+    // Update iframe src with desktop parameters
+    iframe.src = url.toString();
+  });
+}
+
+// Initialize desktop view forcing
+document.addEventListener('DOMContentLoaded', forceDesktopView);
 
 document.getElementById('trickyBtn').addEventListener('click', function() {
     window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rick Roll link
