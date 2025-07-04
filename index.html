@@ -1,163 +1,632 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Will Ratkowski</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" type="image/x-icon" href="images/face-smile-solid.svg">
-	</head>
-	<body class="is-preload">
-			<header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar"><img src="images/IMG_1612 (1).jpg" alt="" /></a>
-					<h1><strong>Hello</strong>, my name is <strong>Will Ratkowski</strong>.<br />
-					I am a 21 year old, self-taught web developer.</h1>
-				</div>
-			</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wlr</title>
+    <link rel="icon" href="code-solid.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark {
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: 2px solid currentColor;
+            color: inherit;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .theme-toggle:hover {
+            background: currentColor;
+        }
+        
+        body:not(.dark) .theme-toggle:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        body.dark .theme-toggle:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 1200px;
+            padding: 60px 40px;
+            width: 100%;
+          
+        }
+        
+        .logo {
+            font-size: clamp(5rem, 15vw, 12rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 80px;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .service-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .service-desc {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 300;
+        }
+        
+        .projects-section {
+            margin: 80px 0;
+        }
+        
+        .projects-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .projects-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.7;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        body.dark .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .project-card:hover {
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-description {
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background: rgba(0, 0, 0, 0.05);
+            color: inherit;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .tech-tag {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .tech-tag:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .tech-tag:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .visit-button {
+            display: inline-block;
+            background: none;
+            border: 1px solid currentColor;
+            color: inherit;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .visit-button:hover {
+            background: currentColor;
+        }
+        
+        body:not(.dark) .visit-button:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        body.dark .visit-button:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .contact {
+            margin-top: 80px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-label {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 100;
+            margin-bottom: 10px;
+        }
+        
+        .contact-value {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+        }
+        
+        .contact-value a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            margin-top: 80px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 300;
+        }
+        
+        .contact-form {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 60px;
+            margin: 80px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        body.dark .contact-form {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-form h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .form-group input,
+        body.dark .form-group textarea {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: currentColor;
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        body.dark .form-group input:focus,
+        body.dark .form-group textarea:focus {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-button {
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        body:not(.dark) .submit-button {
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        body.dark .submit-button {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .submit-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
 
-		
-			<div id="main">
-					<section id="one">
-						<header class="major">
-							<h2>Feel free to check out some of my projects!</h2>
-						</header>
-						<p>I've been working with <b>HTML</b>, <b>CSS</b>, and <b>Javascript</b> since 2023. I am currently looking for a junior developer position.
-							</br>
-						</br>
-						I also have experience with:
-						</br>
-					</br><b><a href="https://nodejs.org/en">Node.js</a></b>
-				</br><b><a href="https://getbootstrap.com/">Bootstrap</a></b>
-			</br> <b><a href="https://react.dev/">React</a></b>
-		</br> <b><a href="https://git-scm.com/">Git</a></b>
-				</br><b><a href="https://webpack.js.org/">Webpack</a></b>
-			</br> <b><a href="https://www.mongodb.com">MongoDB</a></b>
-		</br><b><a href="https://console.groq.com/docs/api-reference">Groq API</a></b>
-	</br> <b><a href="https://github.com/octalmage/robotjs">RobotJS</a></b>
-</br> <b><a href="https://developers.google.com/maps/apis-by-platform">Google maps API</a></b>
-</br> <b><a href="https://fontawesome.com/">Font Awesome</a></b>
-</br> <b><a href="https://microsoft.github.io/monaco-editor/typedoc/index.html">Monaco Editor API</a></b>
-			</p>
-					</section>
+.visit-button {
+    margin-top: auto; /* pushes button to bottom of card */
+}
+.view-count {
+    font-size: 1.25rem;
+   
+   
+    gap: 6px;
+    margin-bottom: 12px;
+}
+/*
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 0 0 8px rgba(255, 0, 0, 0.607);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    }
+}
 
-					<section id="two">
-						<h2>My projects</h2>
-						<div class="row">
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 0 0 8px rgba(255, 0, 0, 0.648);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    }
+}
+*/
 
-							<article class="col-6 col-12-xsmall work-item">
-								<img src="images/code.png" alt="" class="image fit thumb" />
-								<h3><strong style="color: rgb(0, 110, 255);">WLR</strong> Developmet</h3>
-								<p>Freelance site. No customers, but the website looks nice!</p>
-							</br>
-								<a href="https://wlrdevelopment.com/" class="button">View</a>
-							</article>
+/* Default (light mode): no glow */
+.logo {
+    font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    margin-bottom: 40px;
+    
+   
+    
+}
 
-							<article class="col-6 col-12-xsmall work-item">
-								<img src="images/ui.png" alt="" class="image fit thumb" />
-								<h3>wlrlibrary.site</h3>
-								<p>A button libray built with HTML and CSS.</p>
-							</br>
-								<a href="https://wlrlibrary.site/" class="button">View</a> 	&nbsp; 	&nbsp;	&nbsp; <a href="https://slurpguppy.github.io/Editor/" class="button">See code</a>
-							</article>
+/* Dark mode: enable glow animation */
+body.dark .logo {
+    animation: pulseGlow 5s ease-in-out infinite;
+    font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    margin-bottom: 40px;
+    
+    
+}
 
-							<article class="col-6 col-12-xsmall work-item">
-								<img src="images/code.png" alt="" class="image fit thumb" />
-								<h3>wlreditor.site</h3>
-								<p>This is a simple, custom built code editor for the web!</p>
-							</br>
-								<a href="https://wlreditor.site/" class="button">View</a> 	&nbsp; 	&nbsp;	&nbsp; <a href="https://github.com/Slurpguppy" class="button">See code</a>
-							
-								
-							
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<img src="images/ai.png" alt="" class="image fit thumb" />
-							<h3>summarizerai.site</h3>
-							<p>This is a article and website summarizer app built using Groq AI.</p>
-						</br>
-								<a href="https://summarizerai.site/" class="button">View</a> 	&nbsp; 	&nbsp;	&nbsp; <a href="https://github.com/Slurpguppy/Summarizer-Free" class="button">See code</a>
-							
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<img src="images/messages.png" alt="" class="image fit thumb" />
-								<h3>Messages</h3>
-								<p>My first major project: a messaging application.</p>
-							</br>
-								<a href="https://github.com/Slurpguppy/Message" class="button">View</a> 	&nbsp; 	&nbsp;	&nbsp; <a href="https://github.com/Slurpguppy/Message" class="button">See code</a>
-							
-								
-							</article>
-							
-							
-						</div>
-						
-					</section>
-					<section id="three">
-						<h2>Contact me</h2>
-						<p>If you'd like to reach out, feel free to send me a message.</p>
-						<div class="row">
-							<div class="col-8 col-12-small">
-								<form
-  action="https://formspree.io/f/xpwwkwow"
-  method="POST"
->
-									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" placeholder="Email"></div>
-										<div class="col-12"><textarea name="message" placeholder="message"></textarea></div>
-									</div>
-								<ul class="actions">
-									<li><button class="btn btn-lg" type="submit" style="margin-top: 30px;">Send message</button></li>
-								</ul>
-							</form>
-							</div>
-							<div class="col-4 col-12-small">
-								<ul class="labeled-icons">
-									<li>
-										<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-										Kalispell, MT 59901<br />
-										United States
-										
-									</li>
-									<li>
-										<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-										406-314-8288
-									</li>
-									<li>
-										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="#">Wlratkowski@gmail.com</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</section>
+.angle {
+    color: red;
+}
 
-				
 
-			</div>
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-facebook"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>Thanks for checking out my website!</li><li>Github: <a href="https://github.com/Slurpguppy">Slurpguppy</a></li>
-					</ul>
-				</div>
-			</footer>
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    
+    <div class="container">
+        <div class="hero">
+        <div class="logo"><code><span class="angle">&lt;</span>wlr<span class="angle">&gt;</span></code></div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        <div class="title">Web & Software Development</div>
 
-			<script src="https://ui-library-65zn.onrender.com/WLR-UI-bundle.js"></script>
+        </div>
+       
+        
+        <div style="border-top: #ffffff33 solid 1px; border-radius: 20px;"  class="projects-section">
+            <div style="margin-top: 30px;" class="projects-title">Projects</div>
+            <div  class="projects-subtitle"><span class="view-count"> 100,000+ Views</span></div>
+            
+            <div class="projects-grid">
+                <!-- OpenGames Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        OpenGames
+                    </h3>
+                    <p class="project-description">A modern online gaming platform featuring curated games with authentic metadata and smooth user experience.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                    <a href="https://opengames.online/" target="_blank" class="visit-button">Visit OpenGames</a>
+                </div>
 
-	</body>
+                <!-- WebCheckr Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        WebCheckr
+                    </h3>
+                    <p class="project-description">Professional website feedback platform with Stripe integration and advanced analytics for businesses.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">Typeform</span>
+                    </div>
+                    <a href="https://webcheckr.tech/" target="_blank" class="visit-button">Visit WebCheckr</a>
+                </div>
+
+                <!-- Chat Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        Chat
+                    </h3>
+                    <p class="project-description">Advanced AI chatbot powered by Groq API with Firebase backend and real-time messaging capabilities.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Groq API</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                    <a href="https://officialchat.tech" target="_blank" class="visit-button">Visit Chat</a>
+                </div>
+
+                <!-- Text.js Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        Text.js
+                    </h3>
+                    <p class="project-description">Powerful on-page text editor with real-time editing capabilities and modern interface design.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                    <a href="https://textjs.tech" target="_blank" class="visit-button">Visit Text.js</a>
+                </div>
+
+                <!-- TempTracker Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        TempTracker
+                    </h3>
+                    <p class="project-description">Advanced weather application with interactive maps, real-time forecasts, and location-based weather tracking.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">Open-Meteo</span>
+                        <span class="tech-tag">Leaflet.js</span>
+                    </div>
+                    <a href="https://temptracker-03dh.onrender.com" target="_blank" class="visit-button">Visit TempTracker</a>
+                </div>
+
+                <!-- SnappyTranslate Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        SnappyTranslate
+                    </h3>
+                    <p class="project-description">Fast and accurate language translation API with real-time processing and multi-language support.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Groq API</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                    <a href="https://snappytranslate.tech/" target="_blank" class="visit-button">Visit SnappyTranslate</a>
+                </div>
+
+                <!-- NitroTab Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        NitroTab
+                    </h3>
+                    <p class="project-description">Enhanced start page application with MongoDB backend, customizable widgets, and Electron desktop integration.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">Electron</span>
+                    </div>
+                    <a href="https://nitrotab.tech" target="_blank" class="visit-button">Visit NitroTab</a>
+                </div>
+
+                <!-- Searchr Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                       Searchr
+                    </h3>
+                    <p class="project-description">Custom new tab page with personalized search functionality and clean, minimalist design interface.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                    <a href="https://searchr.tech" target="_blank" class="visit-button">Visit Searchr</a>
+                </div>
+
+                <!-- WLREditor Project -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        WLREditor
+                    </h3>
+                    <p class="project-description">Advanced inline code editor with Monaco Editor integration and multiple language support for web development.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Monaco Editor</span>
+                    </div>
+                    <a href="https://wlreditor.site" target="_blank" class="visit-button">Visit WLREditor</a>
+                </div>
+
+                
+        </div>
+        
+        <div class="contact">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:hello@wlr.dev">wlratkowski@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-label">Text</div>
+                    <div class="contact-value">
+                        <a>406-314-8288</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 <code><span class="angle">&lt;</span>wlr<span class="angle">&gt;</span></code>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+
+        // Load saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
 </html>
