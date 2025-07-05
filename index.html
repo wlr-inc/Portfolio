@@ -436,6 +436,161 @@ body.dark .logo {
     color: red;
 }
 
+/* Reviews Section Styles */
+.reviews-container {
+    position: relative;
+}
+
+.reviews-scroll {
+    scroll-behavior: smooth;
+}
+
+.review-card {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 25px;
+    min-width: 320px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border-top: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark .review-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .review-card:hover {
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.review-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.review-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: inherit;
+}
+
+.review-company {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    flex-grow: 1;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.review-service {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: 0;
+    margin-top: auto;
+}
+
+.review-nav-btn {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: inherit;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark .review-nav-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-nav-btn:hover {
+    background: currentColor;
+}
+
+body:not(.dark) .review-nav-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+body.dark .review-nav-btn:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Custom Scrollbar Styles */
+.reviews-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.reviews-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+body.dark .reviews-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.reviews-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+body.dark .reviews-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.reviews-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+body.dark .reviews-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Firefox scrollbar */
+.reviews-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
+
+body.dark .reviews-container {
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
 
     </style>
 </head>
@@ -449,6 +604,123 @@ body.dark .logo {
         <div class="title">Web & Software Development</div>
 
         </div>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section" style="margin: 80px 0; margin-bottom: 350px;">
+            <div class="mx-auto text-center">
+                <!-- Header -->
+                <p style="font-size: 25px; margin-bottom: 40px;">
+                    Project reviews
+                </p>
+
+                <div class="reviews-container" style="overflow-x: auto; padding: 0 20px;">
+                    <div class="reviews-scroll" style="display: flex; gap: 30px; padding: 20px 0; min-width: max-content;">
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img class="review-avatar" src="https://www.opengames.online/thumbnails/game.png" alt="User photo">
+                                <div>
+                                    <h3 class="review-name">Anonymous Visitor</h3>
+                                    
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                "I like this site a lot. I can play games fast without signing up. The games work on my phone and computer. It’s easy to use. I want more games soon!"
+                            </p>
+                            <p class="review-service">opengames.online</p>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img class="review-avatar" src="https://www.opengames.online/thumbnails/game.png" alt="User photo">
+                                <div>
+                                    <h3 class="review-name">Anonymous Visitor</h3>
+                                    
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                "Easy to use and fun games. Nice site!"
+                            </p>
+                            <p class="review-service">opengames.online</p>
+                        </div>
+
+                        
+
+                        
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img class="review-avatar" src="https://webcheckr.tech/eye-solid.png" alt="User photo">
+                                <div>
+                                    <h3 class="review-name">Adam</h3>
+                                    <p class="review-company">decomplify.ai</p>
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                "WebCheckr gave a quick and effective review and helped me with crucial fixes!"
+                            </p>
+                            <p class="review-service">webcheckr.tech</p>
+                        </div>
+
+                        <div class="review-card">
+                                <div class="review-header">
+                                    <img class="review-avatar" src="https://wlrdevelopment.com/code-solid.svg" alt="User photo">
+                                    <div>
+                                        <h3 class="review-name">Anonymous Visitor</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text">
+                                    "Clean interface and works smoothly. Easy to get started!"
+                                </p>
+                                <p class="review-service">wlreditor.site</p>
+                            </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img class="review-avatar" src="https://webcheckr.tech/eye-solid.png" alt="User photo">
+                                <div>
+                                    <h3 class="review-name">Atakan S</h3>
+                                    <p class="review-company">brewcat.io</p>
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                "I used WebCheckr for my recent project, and I received substantially useful feedback even without a paid engagement."
+                            </p>
+                            <p class="review-service">webcheckr.tech</p>
+                        </div>
+
+                        <div class="review-card">
+                                        <div class="review-header">
+                                            <img class="review-avatar" src="https://www.opengames.online/thumbnails/game.png" alt="User photo">
+                                            <div>
+                                                <h3 class="review-name">Anonymous Visitor</h3>
+                                            </div>
+                                        </div>
+                                        <p class="review-text">
+                                            "Searches fast and finds what I need right away. Nice and simple."
+                                        </p>
+                                        <p class="review-service">searchr.tech</p>
+                                    </div>
+
+                                    <div class="review-card">
+                                        <div class="review-header">
+                                            <img class="review-avatar" src="https://www.opengames.online/thumbnails/game.png" alt="User photo">
+                                            <div>
+                                                <h3 class="review-name">Anonymous Visitor</h3>
+                                            </div>
+                                        </div>
+                                        <p class="review-text">
+                                            "Looks good and runs really smoothly. Makes handling tabs way easier."
+                                        </p>
+                                        <p class="review-service">nitrotab.tech</p>
+                                    </div>
+                        
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
        
         
         <div style="border-top: #ffffff33 solid 1px; border-radius: 20px;"  class="projects-section">
@@ -638,6 +910,18 @@ body.dark .logo {
         // Load saved theme preference
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark');
+        }
+
+        // Reviews scroll functionality
+        function scrollReviews(direction) {
+            const container = document.querySelector('.reviews-container');
+            const scrollAmount = 350; // Adjust based on card width + gap
+            
+            if (direction === 'left') {
+                container.scrollLeft -= scrollAmount;
+            } else {
+                container.scrollLeft += scrollAmount;
+            }
         }
     </script>
 </body>
