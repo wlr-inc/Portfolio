@@ -602,17 +602,29 @@ body.dark .reviews-container {
     scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
 }
 
+        .live-dot {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 12px;
+            height: 12px;
+            background-color: #00c853;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(0, 200, 83, 0.5);
+            z-index: 10;
+            animation: livePulse 2s ease-in-out infinite;
+        }
 
-.live-dot {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 10px;
-  height: 10px;
-  background-color: #00c853; /* green */
-  border-radius: 50%;
-  box-shadow: 0 0 4px #00c853;
-}
+        @keyframes livePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
 
 
     </style>
@@ -753,6 +765,7 @@ body.dark .reviews-container {
             <div class="projects-grid">
                 <!-- koolGames Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         KoolGames
                     </h3>
@@ -769,6 +782,7 @@ body.dark .reviews-container {
 
                 <!-- WebCheckr Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         WebCheckr
                     </h3>
@@ -786,6 +800,7 @@ body.dark .reviews-container {
 
                  <!-- WLREditor Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         Editor.html
                     </h3>
@@ -800,6 +815,7 @@ body.dark .reviews-container {
 
                 <!-- OpenGames Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         GamesNova
                     </h3>
@@ -816,6 +832,7 @@ body.dark .reviews-container {
 
                 <!-- Chat Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         Chat
                     </h3>
@@ -851,6 +868,7 @@ body.dark .reviews-container {
 
                 <!-- bgremover Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         bgremover
                     </h3>
@@ -868,6 +886,7 @@ body.dark .reviews-container {
 
                 <!-- Text.js Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         Text.js
                     </h3>
@@ -883,6 +902,7 @@ body.dark .reviews-container {
 
                 <!-- Searchr Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                        Searchr
                     </h3>
@@ -898,6 +918,7 @@ body.dark .reviews-container {
 
                 <!-- TempTracker Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         TempTracker
                     </h3>
@@ -915,6 +936,7 @@ body.dark .reviews-container {
 
                 <!-- SnappyTranslate Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         SnappyTranslate
                     </h3>
@@ -931,6 +953,7 @@ body.dark .reviews-container {
 
                 <!-- NitroTab Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         NitroTab
                     </h3>
@@ -948,6 +971,7 @@ body.dark .reviews-container {
 
                  <!-- imgconvert Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         imgconvert
                     </h3>
@@ -965,6 +989,7 @@ body.dark .reviews-container {
 
                  <!-- DrivenDaily Project -->
                 <div class="project-card">
+                    <div class="live-dot"></div>
                     <h3 class="project-title">
                         DrivenDaily
                     </h3>
